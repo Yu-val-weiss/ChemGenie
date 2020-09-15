@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8GP+48JeD2q73BBthImBySZmuAwsrrzgAXFbvcgxGIDvSUEVoOnVBxZXJvduLvA9e0UFwRCAXStA+NYYtjYy7g==",
+  "dgSpecHash": "gXMIVO+tjYsMgFbKDBasXcZZvxirf4LqG/Dt+BKfaOq6A4eZD74iyVJMjg/rBpXe2cYwWrWzQFaTp9C09Hh3/g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
+  "projectFilePath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",

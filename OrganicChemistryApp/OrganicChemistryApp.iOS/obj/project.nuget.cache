@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9C9exiweWV0Oe2yaH6bT86Qk/4m7gKY53WhKoKVDaY5XSjIkKEffGfRN/vTFbz9kmpNneT9KkBWwDAPyb2oyVg==",
+  "dgSpecHash": "Z7PdOGTI9t4bKWvuKO5Aki7+iitJXq1XSwabI5tTGYK5oZcsGws74Gr1kB2wA7LLQ5pdZ+1buy8FelQM9BIS6g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj",
+  "projectFilePath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.6.0.1141\\xamarin.forms.4.6.0.1141.nupkg.sha512"

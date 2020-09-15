@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NQ6eoVpheE3PQibKh10006ptFkooD57V5GWt6oMibMLw4sXlvkLXbI+1RKsxmRLDzY84f4zBRE7jKox5uFa/gA==",
+  "dgSpecHash": "EJsF14dD35SHawhzuREG3Jpb+LX+lmLgumGfDRK4JAZ7fdYEfG8SbOdves8qE1XyPVgPp6oNdPyVZQTUi9nT7g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.Android\\OrganicChemistryApp.Android.csproj",
+  "projectFilePath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.Android\\OrganicChemistryApp.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.arch.core.common\\1.1.1.3\\xamarin.android.arch.core.common.1.1.1.3.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.arch.core.runtime\\1.1.1.3\\xamarin.android.arch.core.runtime.1.1.1.3.nupkg.sha512",

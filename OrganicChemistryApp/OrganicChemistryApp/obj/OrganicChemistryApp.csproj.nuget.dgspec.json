@@ -1,27 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {}
+    "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\API_Interactions\\API_Interactions.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\API_Interactions\\API_Interactions.csproj",
-        "projectName": "API_Interactions",
-        "projectPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\API_Interactions\\API_Interactions.csproj"
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
-    "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {
+    "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
+        "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
         "projectName": "OrganicChemistryApp",
-        "projectPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
+        "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
         "packagesPath": "C:\\Users\\yuval\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\obj\\",
+        "outputPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -41,11 +31,7 @@
         },
         "frameworks": {
           "netstandard2.0": {
-            "projectReferences": {
-              "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\API_Interactions\\API_Interactions.csproj": {
-                "projectPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\API_Interactions\\API_Interactions.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {

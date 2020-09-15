@@ -136,20 +136,10 @@
           "buildTransitive/Xamarin.Forms.targets": {}
         }
       },
-      "API_Interactions/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/API_Interactions.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/API_Interactions.dll": {}
-        }
-      },
       "OrganicChemistryApp/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "API_Interactions": "1.0.0",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.6.0.1141"
         },
@@ -296,20 +286,10 @@
           "buildTransitive/Xamarin.Forms.targets": {}
         }
       },
-      "API_Interactions/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/API_Interactions.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/API_Interactions.dll": {}
-        }
-      },
       "OrganicChemistryApp/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "API_Interactions": "1.0.0",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.6.0.1141"
         },
@@ -456,20 +436,10 @@
           "buildTransitive/Xamarin.Forms.targets": {}
         }
       },
-      "API_Interactions/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/API_Interactions.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/API_Interactions.dll": {}
-        }
-      },
       "OrganicChemistryApp/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "API_Interactions": "1.0.0",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.6.0.1141"
         },
@@ -616,20 +586,10 @@
           "buildTransitive/Xamarin.Forms.targets": {}
         }
       },
-      "API_Interactions/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/API_Interactions.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/API_Interactions.dll": {}
-        }
-      },
       "OrganicChemistryApp/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "API_Interactions": "1.0.0",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.6.0.1141"
         },
@@ -1004,11 +964,6 @@
         "xamarin.forms.nuspec"
       ]
     },
-    "API_Interactions/1.0.0": {
-      "type": "project",
-      "path": "../../API_Interactions/API_Interactions.csproj",
-      "msbuildProject": "../../API_Interactions/API_Interactions.csproj"
-    },
     "OrganicChemistryApp/1.0.0": {
       "type": "project",
       "path": "../OrganicChemistryApp/OrganicChemistryApp.csproj",
@@ -1029,11 +984,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj",
       "projectName": "OrganicChemistryApp.iOS",
-      "projectPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj",
+      "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj",
       "packagesPath": "C:\\Users\\yuval\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\obj\\",
+      "outputPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -1054,8 +1009,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {
-              "projectPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj"
+            "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {
+              "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj"
             }
           }
         }

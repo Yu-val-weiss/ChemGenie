@@ -63,15 +63,6 @@
           "buildTransitive/Xamarin.Forms.props": {},
           "buildTransitive/Xamarin.Forms.targets": {}
         }
-      },
-      "API_Interactions/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/API_Interactions.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/API_Interactions.dll": {}
-        }
       }
     }
   },
@@ -626,16 +617,10 @@
         "xamarin.forms.4.6.0.1141.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
-    },
-    "API_Interactions/1.0.0": {
-      "type": "project",
-      "path": "../../API_Interactions/API_Interactions.csproj",
-      "msbuildProject": "../../API_Interactions/API_Interactions.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "API_Interactions >= 1.0.0",
       "NETStandard.Library >= 2.0.3",
       "Xamarin.Essentials >= 1.5.3.2",
       "Xamarin.Forms >= 4.6.0.1141"
@@ -649,11 +634,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
+      "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
       "projectName": "OrganicChemistryApp",
-      "projectPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
+      "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
       "packagesPath": "C:\\Users\\yuval\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp\\obj\\",
+      "outputPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -673,11 +658,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {
-            "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\API_Interactions\\API_Interactions.csproj": {
-              "projectPath": "C:\\Users\\yuval\\source\\repos\\OrganicChemistryApp\\API_Interactions\\API_Interactions.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
