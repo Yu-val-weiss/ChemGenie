@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PubChemAPI_Testing
+namespace API_Interactions
 {
-    internal class PugRestQuery
+    public class PugRestQuery
     {
         string _name;
         /// <summary>
         /// Constructor that takes in the IUPAC or common name of a chemical
         /// </summary>
         /// <param name="Chemical Name"></param>
-        internal PugRestQuery(string name)
+        public PugRestQuery(string name)
         {
             _name = name;
         }

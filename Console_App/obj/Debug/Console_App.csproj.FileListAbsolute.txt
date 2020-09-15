@@ -1,0 +1,10 @@
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Console_App.csprojAssemblyReference.cache
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Console_App.csproj.CoreCompileInputs.cache
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Console_App.exe.config
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Console_App.exe
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Console_App.pdb
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\API_Interactions.dll
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\API_Interactions.pdb
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Console_App.csproj.CopyComplete
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Console_App.exe
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Console_App.pdb

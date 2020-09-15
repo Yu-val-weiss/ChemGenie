@@ -7,7 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganicChemistryApp.Android
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganicChemistryApp.iOS", "OrganicChemistryApp\OrganicChemistryApp.iOS\OrganicChemistryApp.iOS.csproj", "{4C433607-D511-4C6C-BD57-6F4C585EC17B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganicChemistryApp", "OrganicChemistryApp\OrganicChemistryApp\OrganicChemistryApp.csproj", "{BFEF3DA2-4DDD-40CD-9A5B-9EFA9DDAE194}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrganicChemistryApp", "OrganicChemistryApp\OrganicChemistryApp\OrganicChemistryApp.csproj", "{BFEF3DA2-4DDD-40CD-9A5B-9EFA9DDAE194}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_App", "Console_App\Console_App.csproj", "{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_Interactions", "API_Interactions\API_Interactions.csproj", "{467C884C-A414-4376-933D-19E85014300C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +77,30 @@ Global
 		{BFEF3DA2-4DDD-40CD-9A5B-9EFA9DDAE194}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{BFEF3DA2-4DDD-40CD-9A5B-9EFA9DDAE194}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{BFEF3DA2-4DDD-40CD-9A5B-9EFA9DDAE194}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Release|iPhone.Build.0 = Release|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4AB8DC69-6690-4608-B071-F83E3BA3CEA3}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Release|iPhone.Build.0 = Release|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{467C884C-A414-4376-933D-19E85014300C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

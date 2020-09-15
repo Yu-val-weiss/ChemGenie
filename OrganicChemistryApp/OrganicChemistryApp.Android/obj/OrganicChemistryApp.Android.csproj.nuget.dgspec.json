@@ -4,6 +4,16 @@
     "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.Android\\OrganicChemistryApp.Android.csproj": {}
   },
   "projects": {
+    "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj",
+        "projectName": "API_Interactions",
+        "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.Android\\OrganicChemistryApp.Android.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -81,7 +91,11 @@
         },
         "frameworks": {
           "netstandard2.0": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj": {
+                "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

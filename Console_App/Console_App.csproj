@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\API_Interactions\API_Interactions.csproj">
+      <Project>{467c884c-a414-4376-933d-19e85014300c}</Project>
+      <Name>API_Interactions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

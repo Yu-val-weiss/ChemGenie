@@ -1,0 +1,6 @@
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\API_Interactions\bin\Debug\API_Interactions.dll
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\API_Interactions\bin\Debug\API_Interactions.pdb
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\API_Interactions\obj\Debug\API_Interactions.csprojAssemblyReference.cache
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\API_Interactions\obj\Debug\API_Interactions.csproj.CoreCompileInputs.cache
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\API_Interactions\obj\Debug\API_Interactions.dll
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\API_Interactions\obj\Debug\API_Interactions.pdb
