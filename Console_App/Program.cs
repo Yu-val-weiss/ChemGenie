@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Xml;
 using API_Interactions;
+using Chemicals;
 
 namespace Console_App
 {
@@ -13,7 +14,7 @@ namespace Console_App
     {
         static void Main(string[] args)
         {
-            var prq = new PugRestQuery("butan-2-ol");
+            /*var prq = new PugRestQuery("butan-2-ol");
             var response = new WebClient().DownloadString(prq.ToString());
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.LoadXml(response);
@@ -22,8 +23,10 @@ namespace Console_App
             {
                 Console.WriteLine(x.Name + ": " + x.InnerText);
             }
+            Console.ReadKey();*/
+            var c = new Element("H");
             Console.ReadKey();
-            
+
         }
     }
 }

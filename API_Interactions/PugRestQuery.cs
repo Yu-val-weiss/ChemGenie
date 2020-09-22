@@ -8,23 +8,22 @@ namespace API_Interactions
 {
     public class PugRestQuery
     {
-        string _name;
+        private readonly string _name;
+        private const string NameHeader = @"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/";
         /// <summary>
         /// Constructor that takes in the IUPAC or common name of a chemical
         /// </summary>
-        /// <param name="Chemical Name"></param>
-        public PugRestQuery(string name)
-        {
-            _name = name;
-        }
+        /// <param name="name">The chemical name of the compound</param>
+        public PugRestQuery(string name) => _name = name;
+
         /// <summary>
         /// Converts the PugRestQuery class into a string that directly accesses the PugRestAPI
         /// </summary>
         /// <returns>String</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/");
+            var sb = new StringBuilder();
+            sb.Append(NameHeader);
             sb.Append(_name);
             sb.Append("/property" + "/IUPACName,MolecularFormula,MolecularWeight" + "/XML");
             return sb.ToString();
