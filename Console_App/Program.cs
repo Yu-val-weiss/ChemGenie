@@ -12,7 +12,7 @@ namespace Console_App
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             /*var prq = new PugRestQuery("butan-2-ol");
             var response = new WebClient().DownloadString(prq.ToString());
@@ -25,6 +25,7 @@ namespace Console_App
             }
             Console.ReadKey();*/
             var c = new Element("H");
+            Console.WriteLine(c.DataPrint());
             Console.ReadKey();
 
         }

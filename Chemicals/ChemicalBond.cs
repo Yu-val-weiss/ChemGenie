@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Chemicals
 {
-    internal enum BondType
+    public enum BondType
     {
         Single,
         Double, 
         Triple
     }
-    internal class ChemicalBond
+    public class ChemicalBond
     {
-        internal BondType _type;
-        internal ChemicalGraphNode _bondedElement;
+        public BondType BondType;
+        public ChemicalGraphNode BondedElement;
 
         public ChemicalBond(BondType type, ChemicalGraphNode bondedElement)
         {
-            _type = type;
-            _bondedElement = bondedElement;
+            BondType = type;
+            BondedElement = bondedElement;
         }
     }
 }

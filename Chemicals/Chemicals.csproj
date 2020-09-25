@@ -44,6 +44,7 @@
     <Compile Include="ChemicalBond.cs" />
     <Compile Include="ChemicalGraphNode.cs" />
     <Compile Include="Element.cs" />
+    <Compile Include="Molecule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
