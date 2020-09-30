@@ -7,20 +7,38 @@ using System.Threading.Tasks;
 
 namespace Chemicals
 {
-    public enum BondType
+    /// <summary>
+    /// The enum defining the order of the bond
+    /// </summary>
+    /// <remarks>Can take the value Single, Double, Triple or Quadruple</remarks>
+    public enum BondOrder
     {
-        Single,
+        Single = 1,
         Double, 
-        Triple
+        Triple,
+        Quadruple
     }
+    /// <summary>
+    /// The ChemicalBond class
+    /// </summary>
     public class ChemicalBond
     {
-        public BondType BondType;
-        public ChemicalGraphNode BondedElement;
-
-        public ChemicalBond(BondType type, ChemicalGraphNode bondedElement)
+        /// <summary>
+        /// The order of the bond
+        /// </summary>
+        public BondOrder BondOrder;
+        /// <summary>
+        /// The AtomNode which the ChemicalBond bonds to
+        /// </summary>
+        public AtomNode BondedElement;
+        /// <summary>
+        /// Creates a new instance of the ChemicalBond class
+        /// </summary>
+        /// <param name="order">The order of the bond</param>
+        /// <param name="bondedElement">The AtomNode which the ChemicalBond bonds to</param>
+        public ChemicalBond(BondOrder order, AtomNode bondedElement)
         {
-            BondType = type;
+            BondOrder = order;
             BondedElement = bondedElement;
         }
     }

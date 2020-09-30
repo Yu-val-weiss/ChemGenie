@@ -5,15 +5,36 @@ using System.Xml;
 
 namespace Chemicals
 {
+    /// <summary>
+    /// The Element class is used to classify the <seealso cref="AtomNode"/> class
+    /// </summary>
     public class Element
     {
+        /// <summary>
+        /// Atomic number of the <seealso cref="Element"/>
+        /// </summary>
         internal int Number;
+        /// <summary>
+        /// Symbol of the <seealso cref="Element"/>
+        /// </summary>
         internal string Symbol;
+        /// <summary>
+        /// Name of the <seealso cref="Element"/>
+        /// </summary>
         internal string Name;
+        /// <summary>
+        /// Atomic mass of the <seealso cref="Element"/>
+        /// </summary>
         internal float Mass;
+        /// <summary>
+        /// Creates a new <seealso cref="Element"/>
+        /// </summary>
+        /// <param name="symbol"></param>
         public Element(string symbol)
         {
             var elementsXmlDocument = new XmlDocument();
+
+            //Loading Elements.xml and ensuring that it has loaded properly
             elementsXmlDocument.Load("Elements.xml");
             var documentNode = elementsXmlDocument.DocumentElement;
             if (documentNode == null)
