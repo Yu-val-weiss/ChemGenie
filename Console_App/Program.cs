@@ -14,18 +14,16 @@ namespace Console_App
     {
         static void Main()
         {
-            /*var prq = new PugRestQuery("butan-2-ol");
+            var prq = new PugRestQuery("butan-2-ol");
             var response = new WebClient().DownloadString(prq.ToString());
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.LoadXml(response);
-            var c = xmlDocument.DocumentElement.FirstChild.ChildNodes;
-            foreach (XmlNode x in c)
-            {
-                Console.WriteLine(x.Name + ": " + x.InnerText);
-            }
-            Console.ReadKey();*/
-            var c = new Element("H");
-            Console.WriteLine(c.DataPrint());
+            //var c = xmlDocument.DocumentElement.FirstChild.ChildNodes;
+            //foreach (XmlNode x in c)
+            //{
+                //Console.WriteLine(x.Name + ": " + x.InnerText);
+            //}
+            Console.WriteLine(xmlDocument.InnerText);
             Console.ReadKey();
 
         }
