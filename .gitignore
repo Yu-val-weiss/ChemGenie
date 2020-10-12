@@ -133,6 +133,4 @@ $RECYCLE.BIN/
 _NCrunch*
 *.v2
 *.cache
-*.cache
-*.cache
-*.pdb
+
