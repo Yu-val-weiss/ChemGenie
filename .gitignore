@@ -43,6 +43,7 @@ x64/
 *.log
 *.svclog
 *.scc
+*.cache
 
 # Visual C++ cache files
 ipch/
@@ -132,5 +133,4 @@ $RECYCLE.BIN/
 
 _NCrunch*
 *.v2
-*.cache
 
