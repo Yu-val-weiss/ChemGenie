@@ -23,7 +23,7 @@ namespace Chemicals
         /// </summary>
         /// <returns>ToSMILES returns the SMILES string for the molecule</returns>
         public string ToSMILES()
-        {
+        {   
             throw new NotImplementedException();
         }
         

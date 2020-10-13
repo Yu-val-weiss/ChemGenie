@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Chemicals.Molecule">
+    <Position X="5.25" Y="0.5" Width="2.5" />
+    <AssociationLine Name="FirstAtom" Type="Chemicals.AtomNode">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.215" Y="0.11" Height="0.182" Width="1.097" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAgAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Molecule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="FirstAtom" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Chemicals.AtomNode">
+    <Position X="0.5" Y="2.5" Width="3" />
+    <AssociationLine Name="Bonds" Type="Chemicals.ChemicalBond">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.382" Y="-0.266" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ThisElement" Type="Chemicals.Element">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.968" Y="0.114" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAQAAAAABAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>AtomNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ThisElement" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="Bonds" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Chemicals.ChemicalBond">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <AssociationLine Name="BondedElement" Type="Chemicals.AtomNode">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.371" Y="0.071" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ChemicalBond.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="BondOrder" />
+      <Field Name="BondedElement" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Chemicals.Element">
+    <Position X="6" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAEAAAAQAAAAAAAAAAAAAAACACAA=</HashCode>
+      <FileName>Element.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Chemicals.BondOrder">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAQCAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>ChemicalBond.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
