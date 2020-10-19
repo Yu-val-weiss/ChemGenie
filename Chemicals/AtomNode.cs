@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chemicals
 {
@@ -20,9 +17,13 @@ namespace Chemicals
         /// </summary>
         internal Element ThisElement;
         /// <summary>
+        /// The suffix used to generate a SMILES string if this AtomNode is part of a molecular rings
+        /// </summary>
+        internal string RingSuffix = string.Empty;
+        /// <summary>
         /// Creates a new <seealso cref="AtomNode"/> from an <seealso cref="Element"/>
         /// </summary>
-        /// <param name="element">Defines the <seealso cref="Element"/> that the <seealso cref="AtomNode"/> is</param>
+        /// <param name="element">Defines the <seealso cref="Element"/> of the <seealso cref="AtomNode"/> </param>
         public AtomNode(Element element)
         {
             if (Bonds != null) Bonds.Capacity = 8;
@@ -66,9 +67,15 @@ namespace Chemicals
         public void RemoveBond(AtomNode bondedElement)
         {
             var len1 = Bonds.Count;
-            Bonds.RemoveAt(Bonds.FindIndex(bond => bond.BondedElement == bondedElement));
-            if (len1 == Bonds.Count)
-                throw new ArgumentOutOfRangeException(nameof(bondedElement), actualValue: bondedElement, "The bonded element's bond could not be removed");
+            var bondToRemove = Bonds[Bonds.FindIndex(bond => bond.BondedElement == bondedElement)];
+            RemoveBond(bondToRemove);
+        }
+
+        public void BreakRing(AtomNode ringBondedElement, int ringNumber)
+        {
+            RemoveBond(ringBondedElement);
+            RingSuffix = ringNumber.ToString();
+            ringBondedElement.RingSuffix = ringNumber.ToString();
         }
     }
 
