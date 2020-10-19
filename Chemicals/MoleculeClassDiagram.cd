@@ -24,11 +24,11 @@
     </AssociationLine>
     <AssociationLine Name="ThisElement" Type="Chemicals.Element">
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="1.968" Y="0.114" />
+        <Position X="1.11" Y="0.06" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAAAAAAAAAAAAAQAAAAABAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAgAAACAAAAAAAAQAAAAABAAAAIAAAAAAAAAA=</HashCode>
       <FileName>AtomNode.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
