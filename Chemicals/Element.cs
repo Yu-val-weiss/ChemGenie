@@ -12,19 +12,19 @@ namespace Chemicals
         /// <summary>
         /// Atomic number of the <seealso cref="Element"/>
         /// </summary>
-        internal int Number;
+        public int Number;
         /// <summary>
         /// Symbol of the <seealso cref="Element"/>
         /// </summary>
-        internal string Symbol;
+        public string Symbol;
         /// <summary>
         /// Name of the <seealso cref="Element"/>
         /// </summary>
-        internal string Name;
+        public string Name;
         /// <summary>
         /// Atomic mass of the <seealso cref="Element"/>
         /// </summary>
-        internal float Mass;
+        public float Mass;
         /// <summary>
         /// Creates a new <seealso cref="Element"/>
         /// </summary>

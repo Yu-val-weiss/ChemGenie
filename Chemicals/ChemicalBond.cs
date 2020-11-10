@@ -21,6 +21,10 @@
         /// </summary>
         public BondOrder BondOrder;
         /// <summary>
+        /// The current AtomNode
+        /// </summary>
+        public AtomNode ThisElement;
+        /// <summary>
         /// The AtomNode which the ChemicalBond bonds to
         /// </summary>
         public AtomNode BondedElement;
@@ -28,11 +32,18 @@
         /// Creates a new instance of the ChemicalBond class
         /// </summary>
         /// <param name="order">The order of the bond</param>
+        /// <param name="thisElement">The current element that bonds to the other one</param>
         /// <param name="bondedElement">The AtomNode which the ChemicalBond bonds to</param>
-        public ChemicalBond(BondOrder order, AtomNode bondedElement)
+        public ChemicalBond(BondOrder order, AtomNode thisElement, AtomNode bondedElement)
         {
             BondOrder = order;
+            ThisElement = thisElement;
             BondedElement = bondedElement;
+        }
+
+        public ChemicalBond InverseBond()
+        {
+            return new ChemicalBond(BondOrder, BondedElement, ThisElement);
         }
     }
 }
