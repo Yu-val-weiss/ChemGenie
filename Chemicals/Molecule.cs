@@ -18,48 +18,31 @@ namespace Chemicals
         public string ToSMILES()
         {
             RingBreak();
-            var smiles = new StringBuilder();
-            var bondsStack = new Stack<ChemicalBond>();
-            var visitedBonds = new List<ChemicalBond>();
-            var branchString = new StringBuilder();
-            foreach (var bond in Atoms[0].Bonds)
-                bondsStack.Push(bond);
-            smiles.Append(Atoms[0].Element.Symbol);
-            if (Atoms[0].RingSuffix.Item1 != -1)
-            {
-                smiles.Append(BondStringFromOrder(Atoms[0].RingSuffix.Item2));
-                smiles.Append(Atoms[0].RingSuffix.Item1);
-            }
-            while (bondsStack.Count > 0)
-            {
-                var bond = bondsStack.Pop();
-                visitedBonds.Add(bond);
-                var atom = bond.BondedElement;
-
-                if (atom.RingSuffix.Item1 != -1)
-                {
-                    branchString.Append(BondStringFromOrder(atom.RingSuffix.Item2));
-                    branchString.Append(atom.RingSuffix.Item1);
-                }
-
-                branchString.Append(atom.Element.Symbol);
-                if (atom.Bonds.Count == 0)
-                {
-                    smiles.Append("(" + branchString + ")");
-                    branchString.Clear();
-                }
-                else
-                {
-                    foreach (var b in atom.Bonds)
-                    {
-                        if (!visitedBonds.Contains(b))
-                            bondsStack.Push(b);
-                    }
-                }
-            }
-
-            return smiles.ToString();
+            return ToSmilesRec(Atoms.First());
         }
+
+        internal string ToSmilesRec(AtomNode at)
+        {
+            var bonds = at.Bonds;
+            var ringNumber = at.RingSuffix.Item1;
+            switch (bonds.Count)
+            {
+                case 0:
+                    return ringNumber == -1 ? at.Element.Symbol : at.RingSuffixString();
+                case 1:
+                    return ringNumber == -1 ? at.Element.Symbol + BondStringFromOrder(bonds[0].BondOrder) + ToSmilesRec(bonds[0].BondedElement) : 
+                        at.RingSuffixString() + BondStringFromOrder(bonds[0].BondOrder) + ToSmilesRec(bonds[0].BondedElement);
+                default:
+                    string s = ringNumber == -1 ? at.Element.Symbol : at.RingSuffixString();
+                    foreach (var t in bonds)
+                    {
+                        s += "(" + BondStringFromOrder(t.BondOrder) + ToSmilesRec(t.BondedElement) + ")";
+                    }
+                    return s;
+
+            }
+        }
+
         /// <summary>
         /// Add a <seealso cref="ChemicalBond"/> to the element
         /// </summary>
@@ -77,6 +60,8 @@ namespace Chemicals
                 baseAtom.AddBond(secondAtom, order);
             }
         }
+
+        public void AddBondToLast(BondOrder order, AtomNode newAtom) => AddBond(order, Atoms.Last(), newAtom);
         /// <summary>
         /// Trims graph to remove any hydrogen atoms and breaks any cycles in the structure to turn it into a spanning tree
         /// </summary>
@@ -132,6 +117,62 @@ namespace Chemicals
             }
 
             return bondTypeString;
+        }
+
+
+
+        private string ToSmilesOld()
+        {
+            RingBreak();
+            var smiles = new StringBuilder();
+            var bondsStack = new Stack<ChemicalBond>();
+            var visitedBonds = new List<ChemicalBond>();
+            var branchString = new StringBuilder();
+            var looped = false;
+            foreach (var bond in Atoms[0].Bonds)
+                bondsStack.Push(bond);
+            smiles.Append(Atoms[0].Element.Symbol);
+            if (Atoms[0].RingSuffix.Item1 != -1)
+            {
+                smiles.Append(BondStringFromOrder(Atoms[0].RingSuffix.Item2));
+                smiles.Append(Atoms[0].RingSuffix.Item1);
+            }
+            while (bondsStack.Count > 0)
+            {
+                var bond = bondsStack.Pop();
+                visitedBonds.Add(bond);
+                var atom = bond.BondedElement;
+
+                if (atom.RingSuffix.Item1 != -1)
+                {
+                    branchString.Append(BondStringFromOrder(atom.RingSuffix.Item2));
+                    branchString.Append(atom.RingSuffix.Item1);
+                }
+
+                branchString.Append(BondStringFromOrder(bond.BondOrder) + atom.Element.Symbol);
+
+                if (atom.Bonds.Count == 0)
+                {
+                    if (!looped)
+                    {
+                        smiles.Append(branchString);
+                        looped = true;
+                    }
+                    else
+                        smiles.Append("(" + branchString + ")");
+                    branchString.Clear();
+                }
+                else
+                {
+                    foreach (var b in atom.Bonds)
+                    {
+                        if (!visitedBonds.Contains(b))
+                            bondsStack.Push(b);
+                    }
+                }
+            }
+
+            return smiles.ToString();
         }
 
     }

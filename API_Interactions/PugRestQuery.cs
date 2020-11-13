@@ -10,7 +10,7 @@ namespace API_Interactions
     public class PugRestQuery
     {
         private readonly string _name;
-        private const string BaseUri = @"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/";
+        private const string BaseUri = @"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/";
         private static readonly HttpClient Client = new HttpClient();
         /// <summary>
         /// Constructor that takes in the IUPAC or common name of a chemical

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 
 namespace Chemicals
 {
@@ -31,6 +32,13 @@ namespace Chemicals
             if (Bonds != null) Bonds.Capacity = 8;
             Element = element;
         }
+
+        public AtomNode(string symbol)
+        {
+            if (Bonds != null) Bonds.Capacity = 8;
+            Element = new Element(symbol);
+        }
+
         /// <summary>
         /// Adds a new <seealso cref="ChemicalBond"/> into BondList and adds the equivalent <seealso cref="ChemicalBond"/> into the other <seealso cref="AtomNode"/>
         /// </summary>
@@ -84,6 +92,11 @@ namespace Chemicals
         {
             return Bonds.Find(bond => bond.BondedElement == bondedElement).BondOrder;
         }
+        /// <summary>
+        /// A helper function that returns a string comprising of the symbol, and the ring suffix of the <seealso cref="AtomNode"/>
+        /// </summary>
+        /// <returns></returns>
+        public string RingSuffixString() => Element.Symbol + RingSuffix.Item1 + Molecule.BondStringFromOrder(RingSuffix.Item2);
     }
 
 }

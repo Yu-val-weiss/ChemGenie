@@ -13,7 +13,30 @@ namespace Console_App
     {
         static async Task Main()
         {
-            /*var prq = new PugRestQuery("butan-2-ol");
+            var c0 = new AtomNode("C");
+            var c1 = new AtomNode("C");
+            var c2 = new AtomNode("C");
+            var o = new AtomNode("O");
+            var h = new AtomNode("H");
+            var h2 = new AtomNode("H");
+            var o2 = new AtomNode("O");
+            var c3 = new AtomNode("C");
+            var c4 = new AtomNode("C");
+            var c5 = new AtomNode("C");
+            
+
+            var mole = new Molecule(c0);
+            mole.AddBondToLast(BondOrder.Double, c1);
+            mole.AddBondToLast(BondOrder.Single, c2);
+            mole.AddBondToLast(BondOrder.Double, c3);
+            mole.AddBondToLast(BondOrder.Single, c4);
+            mole.AddBondToLast(BondOrder.Double, c5);
+            mole.AddBond(BondOrder.Single, c5, c0);
+
+
+            var smiles = mole.ToSMILES();
+            Console.WriteLine(smiles);
+            var prq = new PugRestQuery(smiles);
             var response = await prq.GetString();
             var xmlDocument = new XmlDocument();
             xmlDocument.LoadXml(response);
@@ -22,26 +45,7 @@ namespace Console_App
             {
                 if (x.Name == "CID") continue;
                 Console.WriteLine(x.Name + ": " + x.InnerText);
-            }*/
-
-            var c = new AtomNode(new Element("C"));
-            var c0 = new AtomNode(new Element("C"));
-            var o = new AtomNode(new Element("O"));
-            var h = new AtomNode(new Element("H"));
-            var h2 = new AtomNode(new Element("H"));
-            var n = new AtomNode(new Element("N"));
-            var molecule = new Molecule(c0);
-            molecule.AddBond(BondOrder.Single, c0,c);
-            molecule.AddBond(BondOrder.Single,c,o);
-            molecule.AddBond(BondOrder.Single, o, n);
-            molecule.AddBond(BondOrder.Single,n,c);
-            var mol2 = new Molecule(c0);
-            for (int i = 0; i < 10; i++)
-            {
-                var cx = new AtomNode(new Element("C"));
-                mol2.AddBond(BondOrder.Single, mol2.Atoms.Last(), cx);
             }
-            Console.WriteLine(mol2.ToSMILES());
             Console.ReadKey();
 
         }
