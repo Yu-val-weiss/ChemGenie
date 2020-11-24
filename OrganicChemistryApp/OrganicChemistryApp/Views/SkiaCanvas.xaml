@@ -2,12 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:tt="clr-namespace:TouchTracking.Forms;assembly=TouchTracking.Forms"
              x:Class="OrganicChemistryApp.Views.SkiaCanvas"
-             Title="Tap Toggle Fill">
+             Title="Draw">
 
-    <skia:SKCanvasView PaintSurface="OnCanvasViewPaintSurface">
-        <skia:SKCanvasView.GestureRecognizers>
-            <TapGestureRecognizer Tapped="OnCanvasViewTapped" />
-        </skia:SKCanvasView.GestureRecognizers>
-    </skia:SKCanvasView>
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <skia:SKCanvasView x:Name="canvasView" 
+                               PaintSurface="OnCanvasViewPaintSurface"/>
+            <Grid.Effects>
+                <tt:TouchEffect Capture="True"
+                                TouchAction="TouchEffect_OnTouchAction"/>
+            </Grid.Effects>
+        </Grid>
+    </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Clear"
+                     Order="Primary"
+                     Priority="0" 
+                     Clicked="ClearCanvas_OnClicked"/>
+    </ContentPage.ToolbarItems>
 </ContentPage>
