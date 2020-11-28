@@ -21,5 +21,10 @@
                      Order="Primary"
                      Priority="0" 
                      Clicked="ClearCanvas_OnClicked"/>
+        <ToolbarItem Text="Undo"
+                     Order="Primary"
+                     Priority="1" 
+                     Clicked="Undo_OnClicked"/>
     </ContentPage.ToolbarItems>
 </ContentPage>
+    
