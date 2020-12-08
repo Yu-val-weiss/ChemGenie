@@ -229,6 +229,7 @@ namespace OrganicChemistryApp.Views
             completedPaths.Clear();
             guidePaths.Clear();
             diffElements.Clear();
+            undoStack.Clear();
             canvasView.InvalidateSurface();
             Title = "Draw";
         }
