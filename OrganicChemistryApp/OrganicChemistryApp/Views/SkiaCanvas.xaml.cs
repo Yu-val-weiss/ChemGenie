@@ -215,20 +215,12 @@ namespace OrganicChemistryApp.Views
                 canvas.DrawText(element.Value.Symbol,point.X,textY,textPaint);
             }
 
-
-
         }
 
         SKPoint ConvertToPixel(TouchTrackingPoint pt)
         {
             return new SKPoint((float) (canvasView.CanvasSize.Width * pt.X / canvasView.Width),
                 (float) (canvasView.CanvasSize.Height * pt.Y / canvasView.Height));
-        }
-
-        float Gradient(SKPath path)
-        {
-            var line = path.GetLine();
-            return -(line[1].Y - line[0].Y) / (line[1].X - line[0].X);
         }
 
         private void ClearCanvas_OnClicked(object sender, EventArgs e)
