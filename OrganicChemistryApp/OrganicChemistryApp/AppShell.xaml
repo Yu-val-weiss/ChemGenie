@@ -82,7 +82,7 @@
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="About" Icon="tab_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
         <ShellContent Title="Search" Icon="tab_search.png" Route ="SearchPage" ContentTemplate="{DataTemplate local:SearchPage}"/>
-        <ShellContent Title="Skia" Icon="tab_search.png" Route ="SkiaCanvas" ContentTemplate="{DataTemplate local:SkiaCanvas}"/>
+        <ShellContent Title="Draw" Icon="tab_search.png" Route ="SkiaCanvas" ContentTemplate="{DataTemplate local:SkiaCanvas}"/>
         <ShellContent Title="Browse" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>
 

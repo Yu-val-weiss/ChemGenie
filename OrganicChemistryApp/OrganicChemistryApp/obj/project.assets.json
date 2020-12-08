@@ -166,6 +166,15 @@
         "runtime": {
           "bin/placeholder/API_Interactions.dll": {}
         }
+      },
+      "Chemicals/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Chemicals.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Chemicals.dll": {}
+        }
       }
     }
   },
@@ -957,11 +966,17 @@
       "type": "project",
       "path": "../../API_Interactions/API_Interactions.csproj",
       "msbuildProject": "../../API_Interactions/API_Interactions.csproj"
+    },
+    "Chemicals/1.0.0": {
+      "type": "project",
+      "path": "../../Chemicals/Chemicals.csproj",
+      "msbuildProject": "../../Chemicals/Chemicals.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "API_Interactions >= 1.0.0",
+      "Chemicals >= 1.0.0",
       "NETStandard.Library >= 2.0.3",
       "SkiaSharp.Views.Forms >= 2.80.2",
       "TouchTracking.Forms >= 1.1.0",
@@ -1004,6 +1019,9 @@
           "projectReferences": {
             "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj": {
               "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj"
+            },
+            "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj": {
+              "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj"
             }
           }
         }

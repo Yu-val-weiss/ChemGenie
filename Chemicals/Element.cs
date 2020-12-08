@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Xml;
+using System.Globalization;
+using System.IO;
 
 namespace Chemicals
 {
@@ -29,12 +31,18 @@ namespace Chemicals
         /// Creates a new <seealso cref="Element"/>
         /// </summary>
         /// <param name="symbol"></param>
-        public Element(string symbol)
+        /// <param name="stream"></param>
+        public Element(string symbol, Stream stream = null)
         {
             var elementsXmlDocument = new XmlDocument();
-
+            symbol = new CultureInfo("en").TextInfo.ToTitleCase(symbol.ToLower()); //properly capitalise 
             //Loading Elements.xml and ensuring that it has loaded properly
-            elementsXmlDocument.Load("Elements.xml");
+            if (stream is null)
+                elementsXmlDocument.Load("Elements.xml");
+            else
+            {
+                elementsXmlDocument.Load(stream);
+            }
             var documentNode = elementsXmlDocument.DocumentElement;
             if (documentNode == null)
             {

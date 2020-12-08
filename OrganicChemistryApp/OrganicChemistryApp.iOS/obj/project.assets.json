@@ -227,11 +227,21 @@
           "bin/placeholder/API_Interactions.dll": {}
         }
       },
+      "Chemicals/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Chemicals.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Chemicals.dll": {}
+        }
+      },
       "OrganicChemistryApp/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "API_Interactions": "1.0.0",
+          "Chemicals": "1.0.0",
           "SkiaSharp.Views.Forms": "2.80.2",
           "TouchTracking.Forms": "1.1.0",
           "Xamarin.Essentials": "1.5.3.2",
@@ -453,11 +463,21 @@
           "bin/placeholder/API_Interactions.dll": {}
         }
       },
+      "Chemicals/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Chemicals.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Chemicals.dll": {}
+        }
+      },
       "OrganicChemistryApp/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "API_Interactions": "1.0.0",
+          "Chemicals": "1.0.0",
           "SkiaSharp.Views.Forms": "2.80.2",
           "TouchTracking.Forms": "1.1.0",
           "Xamarin.Essentials": "1.5.3.2",
@@ -682,11 +702,21 @@
           "bin/placeholder/API_Interactions.dll": {}
         }
       },
+      "Chemicals/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Chemicals.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Chemicals.dll": {}
+        }
+      },
       "OrganicChemistryApp/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "API_Interactions": "1.0.0",
+          "Chemicals": "1.0.0",
           "SkiaSharp.Views.Forms": "2.80.2",
           "TouchTracking.Forms": "1.1.0",
           "Xamarin.Essentials": "1.5.3.2",
@@ -911,11 +941,21 @@
           "bin/placeholder/API_Interactions.dll": {}
         }
       },
+      "Chemicals/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Chemicals.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Chemicals.dll": {}
+        }
+      },
       "OrganicChemistryApp/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "API_Interactions": "1.0.0",
+          "Chemicals": "1.0.0",
           "SkiaSharp.Views.Forms": "2.80.2",
           "TouchTracking.Forms": "1.1.0",
           "Xamarin.Essentials": "1.5.3.2",
@@ -1489,6 +1529,11 @@
       "type": "project",
       "path": "../../API_Interactions/API_Interactions.csproj",
       "msbuildProject": "../../API_Interactions/API_Interactions.csproj"
+    },
+    "Chemicals/1.0.0": {
+      "type": "project",
+      "path": "../../Chemicals/Chemicals.csproj",
+      "msbuildProject": "../../Chemicals/Chemicals.csproj"
     },
     "OrganicChemistryApp/1.0.0": {
       "type": "project",

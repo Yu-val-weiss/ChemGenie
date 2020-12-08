@@ -6,6 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Elements.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Elements.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.2" />
     <PackageReference Include="TouchTracking.Forms" Version="1.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />  
@@ -14,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\API_Interactions\API_Interactions.csproj" />
+    <ProjectReference Include="..\..\Chemicals\Chemicals.csproj" />
   </ItemGroup>
 
   <ItemGroup>

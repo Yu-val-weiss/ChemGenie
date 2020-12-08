@@ -11,6 +11,7 @@ namespace Chemicals
         public List<AtomNode> Atoms;
         public int Count => Atoms.Count;
         public Molecule(AtomNode atom) => Atoms = new List<AtomNode> { atom };
+        public Molecule() => Atoms = new List<AtomNode>();
         /// <summary>
         /// The method ToSMILES converts the Molecule into its "Simplified molecular-input line-entry system" form.
         /// </summary>

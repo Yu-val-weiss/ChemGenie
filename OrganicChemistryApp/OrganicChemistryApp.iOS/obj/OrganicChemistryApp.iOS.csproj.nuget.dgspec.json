@@ -14,6 +14,16 @@
         "net472": {}
       }
     },
+    "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj",
+        "projectName": "Chemicals",
+        "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -105,6 +115,9 @@
             "projectReferences": {
               "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj": {
                 "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj"
+              },
+              "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj": {
+                "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj"
               }
             }
           }

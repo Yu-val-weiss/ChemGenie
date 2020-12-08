@@ -151,4 +151,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\tab_search.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\atom_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\beaker_search.png" />
+  </ItemGroup>
 </Project>
