@@ -13,8 +13,7 @@ namespace Chemicals
         /// The list of all the bonds that the atom has with other atoms
         /// </summary>
         public List<ChemicalBond> Bonds = new List<ChemicalBond>();
-        public Dictionary<AtomNode, BondOrder> BondsDict = new Dictionary<AtomNode, BondOrder>();
-        public List<AtomNode> VisitedBy = new List<AtomNode>();
+        //public List<AtomNode> VisitedBy = new List<AtomNode>();
         /// <summary>
         /// The type of <seealso cref="Chemicals.Element"/> that the atom is
         /// </summary>

@@ -16,22 +16,20 @@ namespace Console_App
             var c0 = new AtomNode("C");
             var c1 = new AtomNode("C");
             var c2 = new AtomNode("C");
-            var o = new AtomNode("O");
-            var h = new AtomNode("H");
-            var h2 = new AtomNode("H");
-            var o2 = new AtomNode("O");
             var c3 = new AtomNode("C");
             var c4 = new AtomNode("C");
             var c5 = new AtomNode("C");
             
 
             var mole = new Molecule(c0);
-            mole.AddBondToLast(BondOrder.Double, c1);
+            mole.AddBondToLast(BondOrder.Single, c1);
             mole.AddBondToLast(BondOrder.Single, c2);
-            mole.AddBondToLast(BondOrder.Double, c3);
+            mole.AddBondToLast(BondOrder.Single, c3);
             mole.AddBondToLast(BondOrder.Single, c4);
-            mole.AddBondToLast(BondOrder.Double, c5);
-            mole.AddBond(BondOrder.Single, c5, c0);
+            mole.AddBondToLast(BondOrder.Single, c5);
+            mole.AddBond(BondOrder.Single, c3, new AtomNode("Cl"));
+            mole.AddBond(BondOrder.Double, c5, c0);
+            
 
 
             var smiles = mole.ToSMILES();
