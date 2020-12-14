@@ -352,9 +352,10 @@ namespace OrganicChemistryApp.Views
             }
             else
             {
-                var x = diffElements.First(dif => dif.Key.ToString() == undoStack.Peek()).Key;
+                var x = diffElements.FirstOrDefault(dif => dif.Key.ToString() == undoStack.Peek()).Key;
                 undoStack.Pop();
-                diffElements.Remove(x);
+                if (x != default(SKPoint))
+                    diffElements.Remove(x);
             }
             
             canvasView.InvalidateSurface();
@@ -372,7 +373,6 @@ namespace OrganicChemistryApp.Views
             string inpStr = await DisplayPromptAsync("Add atom", "Please type the symbol of the atom you want to add", maxLength: 2, keyboard: Keyboard.Text);
             if (inpStr is null)
                 return;
-
             try
             {
                 var stream = assembly.GetManifestResourceStream(resourceName);
@@ -387,7 +387,7 @@ namespace OrganicChemistryApp.Views
                 undoStack.Push(guidePaths.Last().Key.ToString());
                 canvasView.InvalidateSurface();
             }
-            catch (NullReferenceException exception)
+            catch (NullReferenceException)
             {
                 await DisplayAlert("Error", "Please input a valid Symbol", "OK");
                 DiffChemical_OnClicked(sender, e);
@@ -419,7 +419,7 @@ namespace OrganicChemistryApp.Views
                     atomdict.Add(first,atom);
                 }
 
-                if (!atomdict.ContainsKey(second))
+                else if (!atomdict.ContainsKey(second))
                 {
                     var atom2 = diffElements.ContainsKey(second)
                         ? new AtomNode(diffElements[second])
@@ -432,6 +432,7 @@ namespace OrganicChemistryApp.Views
                 {
                     atomdict[first].AddBond(atomdict[second], BondOrder.Single);
                 }
+
                 
             }
             var mole = new Molecule(atomdict.First().Value);

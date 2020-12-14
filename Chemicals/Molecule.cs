@@ -9,7 +9,6 @@ namespace Chemicals
     public class Molecule
     {
         public List<AtomNode> Atoms;
-        public int Count => Atoms.Count;
         public Molecule(AtomNode atom) => Atoms = new List<AtomNode> { atom };
         public Molecule() => Atoms = new List<AtomNode>();
         /// <summary>
@@ -18,7 +17,13 @@ namespace Chemicals
         /// <returns>ToSMILES returns the SMILES string for the molecule</returns>
         public string ToSMILES()
         {
-            RingBreak();
+            Kosaraju_Cycle();
+            int ringNumber = 1;
+            foreach (var x in SCC.Values)
+            {
+                if (x.Count > 2)
+                    x[1].BreakRing(x[0], ringNumber++);
+            }
             return ToSmilesRec(Atoms.First());
         }
 
@@ -35,10 +40,10 @@ namespace Chemicals
                         at.RingSuffixString() + BondStringFromOrder(bonds[0].BondOrder) + ToSmilesRec(bonds[0].BondedElement);
                 default:
                     string s = ringNumber == -1 ? at.Element.Symbol : at.RingSuffixString();
-                    foreach (var t in bonds.OrderBy(bond => bond.BondedElement.Bonds.Count))
+                    foreach (var t in bonds.OrderBy(bond => bond.BondedElement.Bonds.Count + bond.BondedElement.RingSuffix.Item1))
                     {
                         string tsr = ToSmilesRec(t.BondedElement);
-                        var count = tsr.Count(x => Char.IsDigit(x));
+                        var count = tsr.Count(char.IsDigit);
                         if (count != 1)
                             s += "(" + BondStringFromOrder(t.BondOrder) + tsr + ")";
                         else
@@ -61,50 +66,80 @@ namespace Chemicals
             if (baseAtom == secondAtom)
                 throw new ArgumentException("Cannot add a bond to itself");
             if (Atoms.Contains(secondAtom))
+            {
                 baseAtom.AddBond(secondAtom, order);
+                secondAtom.AddInBond(baseAtom, order);
+            }
             else
             {
                 Atoms.Add(secondAtom);
                 baseAtom.AddBond(secondAtom, order);
+                secondAtom.AddInBond(baseAtom, order);
             }
         }
 
         public void AddBondToLast(BondOrder order, AtomNode newAtom) => AddBond(order, Atoms.Last(), newAtom);
+        
+        Dictionary<AtomNode,bool> visited = new Dictionary<AtomNode, bool>(); //maintains all visited AtomNodes for Kosaraju
+        Stack<AtomNode> stack = new Stack<AtomNode>();//stack that orders by time of visit
+        public Dictionary<AtomNode, List<AtomNode>> SCC = new Dictionary<AtomNode, List<AtomNode>>();//all strongly connected components and their members
         /// <summary>
         /// Trims graph to remove any hydrogen atoms and breaks any cycles in the structure to turn it into a spanning tree
         /// </summary>
-        /// <returns>True if a ring was found and broken, false otherwise</returns>
-        public int RingBreak()
+        // Source https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm
+        public void Kosaraju_Cycle()
         {
             Atoms.RemoveAll(atom => atom.Element.Symbol == "H");
-            foreach (var atom in Atoms)
-                atom.Bonds.RemoveAll(bond => bond.BondedElement.Element.Symbol == "H");
-            var ringNumber = 0;
-            var visitedAtoms = new List<AtomNode>();
-            var atomsStack = new Stack<AtomNode>();
-            foreach (var bond in Atoms[0].Bonds)
-                atomsStack.Push(bond.BondedElement);
-            visitedAtoms.Add(Atoms[0]);
-            while (atomsStack.Count > 0 && visitedAtoms.Count < Count)
+            foreach (AtomNode at in Atoms)
             {
-                var currentAtom = atomsStack.Pop();
-                for (int i = 0; i < currentAtom.Bonds.Count; i++)
-                {
-                    var bnd = currentAtom.Bonds[i];
-                    if (!visitedAtoms.Contains(bnd.BondedElement))
-                        atomsStack.Push(bnd.BondedElement);
-                    if (visitedAtoms.Contains(bnd.BondedElement))
-                    {
-                        ringNumber += 1;
-                        currentAtom.BreakRing(bnd.BondedElement, ringNumber);
-                        atomsStack.Push(bnd.BondedElement);
-                    }
-                }
-                visitedAtoms.Add(currentAtom);
+                visited.Add(at, false);
+                at.Bonds.RemoveAll(bond => bond.BondedElement.Element.Symbol == "H");
+                at.InBonds.RemoveAll(bond => bond.BondedElement.Element.Symbol == "H");
             }
 
-            return ringNumber;
+            foreach (AtomNode at in Atoms)
+            {
+                Visit(at);
+            }
+
+            while (stack.Count > 0)
+            {
+                var u = stack.Pop();
+                Assign(u,u);
+            }
+
         }
+
+        private void Visit(AtomNode u)
+        {
+            if (visited[u])
+                return;
+            visited[u] = true;
+            foreach (var bond in u.Bonds)
+            {
+                Visit(bond.BondedElement);
+            }
+            stack.Push(u);
+        }
+
+        private void Assign(AtomNode u, AtomNode root)
+        {
+            if (SCC.Values.SelectMany(x => x).Contains(u))
+                return;
+            if (SCC.Keys.Contains(root))
+                SCC[root].Add(u);
+            else
+            {
+                SCC.Add(root, new List<AtomNode>{u});
+            }
+
+            foreach (var bond in u.InBonds)
+                Assign(bond.BondedElement, root);
+        }
+
+
+
+
 
         internal static string BondStringFromOrder(BondOrder order)
         {
@@ -118,7 +153,7 @@ namespace Chemicals
                     bondTypeString = "=";
                     break;
                 case BondOrder.Triple: //Usually = but need to encode this as %23 otherwise won't work 
-                    bondTypeString = "%24";
+                    bondTypeString = "%23";
                     break;
                 case BondOrder.Quadruple:
                     bondTypeString = "$";

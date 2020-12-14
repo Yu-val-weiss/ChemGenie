@@ -13,6 +13,7 @@ namespace Chemicals
         /// The list of all the bonds that the atom has with other atoms
         /// </summary>
         public List<ChemicalBond> Bonds = new List<ChemicalBond>();
+        public List<ChemicalBond> InBonds = new List<ChemicalBond>();
         //public List<AtomNode> VisitedBy = new List<AtomNode>();
         /// <summary>
         /// The type of <seealso cref="Chemicals.Element"/> that the atom is
@@ -45,7 +46,6 @@ namespace Chemicals
         public void AddBond(ChemicalBond bond)
         {
             Bonds.Add(bond);
-            //bond.BondedElement.Bonds.Add(bond.InverseBond());
         }
         /// <summary>
         /// Adds a new <seealso cref="ChemicalBond"/> into BondList by first creating the <seealso cref="ChemicalBond"/> and then adding the equivalent into the other <seealso cref="AtomNode"/>
@@ -56,7 +56,12 @@ namespace Chemicals
         {
             var bond = new ChemicalBond(bondOrder,this, bondedElement);
             Bonds.Add(bond);
-            //bondedElement.Bonds.Add(bond.InverseBond());
+        }
+
+        public void AddInBond(AtomNode bondedElement, BondOrder bondOrder)
+        {
+            var bond = new ChemicalBond(bondOrder, this, bondedElement);
+            InBonds.Add(bond);
         }
         /// <summary>
         /// Removes the <seealso cref="ChemicalBond"/> from both this <seealso cref="AtomNode"/> and the other
@@ -85,6 +90,7 @@ namespace Chemicals
             ringBondedElement.RingSuffix = suffix;
             RingSuffix = suffix;
             RemoveBond(ringBondedElement);
+            
         }
 
         private BondOrder GetBondOrder(AtomNode bondedElement)

@@ -23,17 +23,21 @@ namespace Console_App
 
             var mole = new Molecule(c0);
             mole.AddBondToLast(BondOrder.Single, c1);
-            mole.AddBondToLast(BondOrder.Single, c2);
-            mole.AddBondToLast(BondOrder.Single, c3);
-            mole.AddBondToLast(BondOrder.Single, c4);
-            mole.AddBondToLast(BondOrder.Single, c5);
+            mole.AddBond(BondOrder.Single, c1, c2);
+            mole.AddBond(BondOrder.Single,c2, c3);
+            mole.AddBondToLast(BondOrder.Single, c0);
+            //mole.AddBondToLast(BondOrder.Single, c5);
+           // mole.AddBondToLast(BondOrder.Single, c0);
+            mole.AddBond(BondOrder.Single, c0, new AtomNode("Cl"));
+            mole.AddBond(BondOrder.Single, c1, new AtomNode("Cl"));
+            mole.AddBond(BondOrder.Single, c2, new AtomNode("Cl"));
             mole.AddBond(BondOrder.Single, c3, new AtomNode("Cl"));
-            mole.AddBond(BondOrder.Double, c5, c0);
-            
+            //mole.AddBond(BondOrder.Single, c4, new AtomNode("Cl"));
+            //mole.AddBond(BondOrder.Single, c5, new AtomNode("Cl"));
 
-
-            var smiles = mole.ToSMILES();
+            string smiles = mole.ToSMILES();
             Console.WriteLine(smiles);
+
             var prq = new PugRestQuery(smiles);
             var response = await prq.GetString();
             var xmlDocument = new XmlDocument();
