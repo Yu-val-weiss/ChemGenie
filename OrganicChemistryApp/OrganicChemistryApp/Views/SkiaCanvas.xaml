@@ -11,6 +11,7 @@
             <skia:SKCanvasView x:Name="canvasView" 
                                PaintSurface="OnCanvasViewPaintSurface"/>
             <ImageButton Source="atom_icon.png" HorizontalOptions="End" VerticalOptions="End" Clicked="DiffChemical_OnClicked"/>
+            <ImageButton Source="" HorizontalOptions="Center" VerticalOptions="End" Clicked="RingButton_OnClicked"/>
             <ImageButton Source="beaker_search.png" HorizontalOptions="Start" VerticalOptions="End" Clicked="Chemical_Searched"/>
             <Grid.Effects>
                 <tt:TouchEffect Capture="True"
