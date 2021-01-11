@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using OrganicChemistryApp.ViewModels;
 using OrganicChemistryApp.Views;
 using Xamarin.Forms;
@@ -13,6 +14,7 @@ namespace OrganicChemistryApp
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute("resultpage", typeof(ResultPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

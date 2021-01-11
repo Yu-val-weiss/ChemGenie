@@ -14,57 +14,38 @@ namespace Chemicals
         /// <summary>
         /// Atomic number of the <seealso cref="Element"/>
         /// </summary>
-        public int Number;
+        public readonly int Number;
         /// <summary>
         /// Symbol of the <seealso cref="Element"/>
         /// </summary>
-        public string Symbol;
+        public readonly string Symbol;
         /// <summary>
         /// Name of the <seealso cref="Element"/>
         /// </summary>
-        public string Name;
+        public readonly string Name;
         /// <summary>
         /// Atomic mass of the <seealso cref="Element"/>
         /// </summary>
-        public float Mass;
+        public readonly float Mass;
+        /// <summary>
+        /// Colour representation of the Element
+        /// </summary>
+        public readonly string Colour;
         /// <summary>
         /// Creates a new <seealso cref="Element"/>
         /// </summary>
+        /// <param name="number"></param>
         /// <param name="symbol"></param>
-        /// <param name="stream"></param>
-        public Element(string symbol, Stream stream = null)
+        /// <param name="name"></param>
+        /// <param name="mass"></param>
+        /// <param name="colour"></param>
+        internal Element(int number, string symbol, string name, float mass, string colour)
         {
-            var elementsXmlDocument = new XmlDocument();
-            symbol = new CultureInfo("en").TextInfo.ToTitleCase(symbol.ToLower()); //properly capitalise 
-            //Loading Elements.xml and ensuring that it has loaded properly
-            if (stream is null)
-                elementsXmlDocument.Load("Elements.xml");
-            else
-            {
-                elementsXmlDocument.Load(stream);
-            }
-            var documentNode = elementsXmlDocument.DocumentElement;
-            if (documentNode == null)
-            {
-                throw new NullReferenceException("Invalid chemical symbol");
-            }
-            var elementNode = documentNode.SelectSingleNode($"/elements/element[symbol = \"{symbol}\"]");
+            Number = number;
             Symbol = symbol;
-            if (elementNode == null) throw new NullReferenceException("Element node could not be accessed");
-            if (elementNode.Attributes == null) throw new NullReferenceException("Element node had no attributes");
-            foreach (XmlNode attribute in elementNode.ChildNodes)
-                switch (attribute.LocalName)
-                {
-                    case "number":
-                        Number = Convert.ToInt32(attribute.InnerText);
-                        break;
-                    case "mass":
-                        Mass = float.Parse(attribute.InnerText);
-                        break;
-                    case "name":
-                        Name = attribute.InnerText;
-                        break;
-                }
+            Name = name;
+            Mass = mass;
+            Colour = colour;
         }
 
         public string DataPrint()
@@ -76,5 +57,6 @@ namespace Chemicals
             sb.Append($"Name is {Name}");
             return sb.ToString();
         }
+
     }
 }

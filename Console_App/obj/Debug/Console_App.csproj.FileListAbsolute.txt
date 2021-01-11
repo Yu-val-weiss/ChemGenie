@@ -11,3 +11,5 @@ C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Co
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Chemicals.dll
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Chemicals.pdb
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Elements.xml
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Newtonsoft.Json.dll
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Newtonsoft.Json.xml

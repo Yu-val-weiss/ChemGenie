@@ -20,7 +20,6 @@ namespace OrganicChemistryApp.Views
         public ItemsPage()
         {
             InitializeComponent();
-
             BindingContext = _viewModel = new ItemsViewModel();
         }
 

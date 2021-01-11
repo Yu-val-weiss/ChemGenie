@@ -40,7 +40,7 @@ namespace Chemicals
                         at.RingSuffixString() + BondStringFromOrder(bonds[0].BondOrder) + ToSmilesRec(bonds[0].BondedElement);
                 default:
                     string s = ringNumber == -1 ? at.Element.Symbol : at.RingSuffixString();
-                    foreach (var t in bonds.OrderBy(bond => bond.BondedElement.Bonds.Count + bond.BondedElement.RingSuffix.Item1))
+                    foreach (var t in bonds.OrderBy(bond => bond.BondedElement.Bonds.Count + 2 * bond.BondedElement.RingSuffix.Item1))
                     {
                         string tsr = ToSmilesRec(t.BondedElement);
                         var count = tsr.Count(char.IsDigit);
@@ -153,7 +153,7 @@ namespace Chemicals
                     bondTypeString = "=";
                     break;
                 case BondOrder.Triple: //Usually = but need to encode this as %23 otherwise won't work 
-                    bondTypeString = "%23";
+                    bondTypeString = "#";
                     break;
                 case BondOrder.Quadruple:
                     bondTypeString = "$";

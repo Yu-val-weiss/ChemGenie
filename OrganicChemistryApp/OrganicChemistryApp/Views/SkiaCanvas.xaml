@@ -10,9 +10,12 @@
         <Grid BackgroundColor="White">
             <skia:SKCanvasView x:Name="canvasView" 
                                PaintSurface="OnCanvasViewPaintSurface"/>
+            <SearchBar VerticalOptions="Start" HorizontalOptions="Center" IsSpellCheckEnabled="False" Placeholder="Search by IUPAC name..."
+                       PlaceholderColor="LightBlue" SearchButtonPressed="SearchBar_OnSearchButtonPressed"/>
             <ImageButton Source="atom_icon.png" HorizontalOptions="End" VerticalOptions="End" Clicked="DiffChemical_OnClicked"/>
-            <ImageButton Source="" HorizontalOptions="Center" VerticalOptions="End" Clicked="RingButton_OnClicked"/>
             <ImageButton Source="beaker_search.png" HorizontalOptions="Start" VerticalOptions="End" Clicked="Chemical_Searched"/>
+            <Picker x:Name="Picker" HorizontalOptions="Center" VerticalOptions="End" Title="Bond Order" TitleColor="LightSlateGray" HorizontalTextAlignment="Center" 
+                    TextColor="LightSlateGray"/>
             <Grid.Effects>
                 <tt:TouchEffect Capture="True"
                                 TouchAction="TouchEffect_OnTouchAction"/>
@@ -20,6 +23,7 @@
         </Grid>
     </ContentPage.Content>
     <ContentPage.ToolbarItems>
+        
         <ToolbarItem Text="Clear"
                      Order="Primary"
                      Priority="0" 

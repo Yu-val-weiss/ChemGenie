@@ -10,7 +10,7 @@ namespace API_Interactions
     public class PugRestQuery
     {
         private readonly string _name;
-        private const string BaseUri = @"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/";
+        public const string BaseUri = @"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/";
         private static readonly HttpClient Client = new HttpClient();
         /// <summary>
         /// Constructor that takes in the IUPAC or common name of a chemical
@@ -27,7 +27,7 @@ namespace API_Interactions
             var sb = new StringBuilder();
             sb.Append(BaseUri);
             sb.Append(_name);
-            sb.Append("/property" + "/IUPACName,MolecularFormula,MolecularWeight" + "/XML");
+            sb.Append("/property" + "/IUPACName,MolecularFormula" + "/XML");
             return sb.ToString();
         }
 

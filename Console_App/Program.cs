@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,34 +21,38 @@ namespace Console_App
             var c4 = new AtomNode("C");
             var c5 = new AtomNode("C");
             
-
+            Console.WriteLine(c5.Element.Colour);
             var mole = new Molecule(c0);
             mole.AddBondToLast(BondOrder.Single, c1);
             mole.AddBond(BondOrder.Single, c1, c2);
             mole.AddBond(BondOrder.Single,c2, c3);
+            mole.AddBondToLast(BondOrder.Single, c4);
+            mole.AddBondToLast(BondOrder.Single, c5);
             mole.AddBondToLast(BondOrder.Single, c0);
-            //mole.AddBondToLast(BondOrder.Single, c5);
-           // mole.AddBondToLast(BondOrder.Single, c0);
-            mole.AddBond(BondOrder.Single, c0, new AtomNode("Cl"));
-            mole.AddBond(BondOrder.Single, c1, new AtomNode("Cl"));
-            mole.AddBond(BondOrder.Single, c2, new AtomNode("Cl"));
-            mole.AddBond(BondOrder.Single, c3, new AtomNode("Cl"));
-            //mole.AddBond(BondOrder.Single, c4, new AtomNode("Cl"));
-            //mole.AddBond(BondOrder.Single, c5, new AtomNode("Cl"));
 
             string smiles = mole.ToSMILES();
             Console.WriteLine(smiles);
 
             var prq = new PugRestQuery(smiles);
-            var response = await prq.GetString();
-            var xmlDocument = new XmlDocument();
-            xmlDocument.LoadXml(response);
-            var c = xmlDocument.DocumentElement.FirstChild.ChildNodes;
-            foreach (XmlNode x in c)
+            try
             {
-                if (x.Name == "CID") continue;
-                Console.WriteLine(x.Name + ": " + x.InnerText);
+                var response = await prq.GetString();
+                var xmlDocument = new XmlDocument();
+                xmlDocument.LoadXml(response);
+                var c = xmlDocument.DocumentElement.FirstChild.ChildNodes;
+                foreach (XmlNode x in c)
+                {
+                    if (x.Name == "CID") continue;
+                    Console.WriteLine(x.Name + ": " + x.InnerText);
+                }
             }
+            catch (System.Net.Http.HttpRequestException e)
+            {
+                Console.WriteLine(e.HResult);
+                Console.WriteLine(e.Message);
+            }
+            
+            
             Console.ReadKey();
 
         }

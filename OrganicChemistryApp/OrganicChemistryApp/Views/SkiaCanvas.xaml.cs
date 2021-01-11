@@ -10,32 +10,34 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using Chemicals;
 using Xamarin.Forms.Xaml;
+using API_Interactions;
 using Element = Chemicals.Element;
 
 namespace OrganicChemistryApp.Views
 {
+    public class BondPath : SKPath
+    {
+        public BondOrder Order = BondOrder.Single;
+    }
+
     public partial class SkiaCanvas : ContentPage
     {
 
-        Dictionary<long, SKPath> inProgressPaths = new Dictionary<long, SKPath>();
-        Dictionary<SKPoint, List<SKPath>> guidePaths = new Dictionary<SKPoint, List<SKPath>>();
-
-        List<SKPath> completedPaths = new List<SKPath>();
-        Dictionary<SKPath, BondOrder> bondOrders = new Dictionary<SKPath, BondOrder>();
+        Dictionary<long, BondPath> inProgressPaths = new Dictionary<long, BondPath>();
+        Dictionary<SKPoint, List<BondPath>> guidePaths = new Dictionary<SKPoint, List<BondPath>>();
+        List<BondPath> completedPaths = new List<BondPath>();
         Dictionary<SKPoint, Element> diffElements = new Dictionary<SKPoint, Element>();
-
         Stack<string> undoStack = new Stack<string>();
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        private string resourceName;
+        private ElementBuilder eb;
 
         #region SKPaints
-    
 
-            
+
+
         SKPaint paint = new SKPaint
         {
             Style = SKPaintStyle.Stroke,
-            Color = SKColors.Blue,
+            Color = SKColor.Parse("909090"),
             StrokeWidth = 10,
             StrokeCap = SKStrokeCap.Round,
             StrokeJoin = SKStrokeJoin.Round
@@ -53,7 +55,6 @@ namespace OrganicChemistryApp.Views
         SKPaint elPaint = new SKPaint
         {
             Style = SKPaintStyle.Stroke,
-            Color = SKColors.DarkCyan,
             StrokeWidth = 5,
             StrokeCap = SKStrokeCap.Round,
             StrokeJoin = SKStrokeJoin.Round
@@ -71,9 +72,13 @@ namespace OrganicChemistryApp.Views
         public SkiaCanvas()
         {
             InitializeComponent();
-            resourceName = assembly.GetManifestResourceNames()
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            var resourceName = assembly.GetManifestResourceNames()
                 .Single(str => str.EndsWith("Elements.xml"));
-            
+
+            Picker.ItemsSource = new List<string>{"Single","Double","Triple"};
+            var stream = assembly.GetManifestResourceStream(resourceName);
+            eb = new ElementBuilder(stream);
         }
 
         
@@ -85,7 +90,7 @@ namespace OrganicChemistryApp.Views
                     if (!inProgressPaths.ContainsKey(args.Id))
                     {
                         guidePaths.Clear();
-                        SKPath path = new SKPath();
+                        BondPath path = new BondPath();
                         var pixel = ConvertToPixel(args.Location);
 
                         if (completedPaths.Count > 0)
@@ -112,17 +117,13 @@ namespace OrganicChemistryApp.Views
                         path.MoveTo(pixel);
                         inProgressPaths.Add(args.Id, path);
 
-                        var gp = new List<SKPoint>();
-                        var cp = new List<SKPoint>();
+                        var compp = new List<SKPoint[]>();
 
                         if (pixel != ConvertToPixel(args.Location))
                         {
-                            foreach (var p in guidePaths[pixel])
-                                gp.Add(p.LastPoint);
                             foreach (var p in completedPaths)
-                                cp.AddRange(p.GetLine());
-                            var intersect = cp.Intersect(gp).ToList();
-                            guidePaths[pixel].RemoveAll(pth => intersect.Contains(pth.LastPoint));
+                                compp.Add(p.GetLine());
+                            guidePaths[pixel].RemoveAll(pth => compp.Contains(pth.GetLine()) || compp.Contains(ReverseLine(pth)));
                         }
 
                         if (completedPaths.Count == 0)
@@ -140,7 +141,7 @@ namespace OrganicChemistryApp.Views
                 case TouchActionType.Moved:
                     if (inProgressPaths.ContainsKey(args.Id))
                     {
-                        SKPath path = inProgressPaths[args.Id];
+                        BondPath path = inProgressPaths[args.Id];
                         var firstPoint = path[0];
                         path.Rewind();
                         path.MoveTo(firstPoint);
@@ -149,11 +150,12 @@ namespace OrganicChemistryApp.Views
                         if (guidePaths.ContainsKey(firstPoint))
                         {
 
-                            SKPath linqPath = guidePaths[firstPoint]
+                            BondPath linqPath = guidePaths[firstPoint]
                                 .FirstOrDefault(pth => SKPoint.Distance(pth.LastPoint, path.LastPoint) < 30);
                             if (linqPath != null)
                             {
                                 guidePaths.Remove(linqPath[0]);
+                                linqPath.Order = BondOrderFromPicker();
                                 completedPaths.Add(linqPath);
                                 undoStack.Push("path");
                                 MakeNewPathFromPoint(args, linqPath.LastPoint);
@@ -162,30 +164,6 @@ namespace OrganicChemistryApp.Views
                             }
                            
                         }
-                        /*if (completedPaths.Count > 2)
-                        {
-                            SKPath linqPathF = completedPaths.FirstOrDefault(pth =>
-                                SKPoint.Distance(pth[0], path.LastPoint) < 60);
-                            SKPath linqPathL = completedPaths.FirstOrDefault(pth =>
-                                SKPoint.Distance(pth.LastPoint, path.LastPoint) < 60);
-                            if (linqPathF != null)
-                            {
-                                guidePaths.Remove(linqPathF[0]);
-                                completedPaths.Add(linqPathF);
-                                undoStack.Push("path");
-                                MakeNewPathFromPoint(args, linqPathF.LastPoint);
-                            }
-                            else if (linqPathL != null)
-                            {
-                                guidePaths.Remove(linqPathL[0]);
-                                completedPaths.Add(linqPathL);
-                                undoStack.Push("path");
-                                MakeNewPathFromPoint(args, linqPathL.LastPoint);
-                            }
-                        }*/
-
-                        
-
                         canvasView.InvalidateSurface();
                     }
 
@@ -216,30 +194,50 @@ namespace OrganicChemistryApp.Views
         {
             SKCanvas canvas = args.Surface.Canvas;
             canvas.Clear();
-            foreach (SKPath path in guidePaths.Values.SelectMany(x => x))
+            foreach (BondPath path in guidePaths.Values.SelectMany(x => x))
             {
                 canvas.DrawPath(path, guidePaint);
             }
 
-            foreach (SKPath path in completedPaths)
+            foreach (BondPath path in completedPaths)
             {
                 canvas.DrawPath(path, paint);
+                var pth = new BondPath();
+                switch (path.Order)
+                {
+                    case BondOrder.Single:
+                        break;
+                    case BondOrder.Double:
+                        pth.MoveTo(path[0].X + 10, path[0].Y + 20f);
+                        pth.LineTo(path.LastPoint.X - 10, path.LastPoint.Y + 20);
+                        canvas.DrawPath(pth, paint);
+                        break;
+                    case BondOrder.Triple:
+                        pth.MoveTo(path[0].X + 10, path[0].Y + 20f);
+                        pth.LineTo(path.LastPoint.X - 10, path.LastPoint.Y + 20);
+                        canvas.DrawPath(pth, paint);
+                        pth.MoveTo(path[0].X + 10, path[0].Y - 20f);
+                        pth.LineTo(path.LastPoint.X - 10, path.LastPoint.Y - 20);
+                        canvas.DrawPath(pth, paint);
+                        break;
+                }
             }
 
-            foreach (SKPath path in inProgressPaths.Values)
+
+            foreach (BondPath path in inProgressPaths.Values)
             {
                 canvas.DrawPath(path, paint);
             }
 
             foreach (var element in diffElements)
             {
+                var colour = SKColor.Parse(element.Value.Colour);
+                elPaint.Color = colour;
                 canvas.DrawCircle(element.Key, 50, elPaint);
                 canvas.DrawCircle(element.Key,47.5f,elFillPaint);
-
-                string str = element.Value.Symbol;
                 SKPaint textPaint = new SKPaint
                 {
-                    Color = SKColors.DarkCyan,
+                    Color = colour,
                     TextSize = 80,
                     TextAlign = SKTextAlign.Center
                 };
@@ -254,6 +252,13 @@ namespace OrganicChemistryApp.Views
         {
             return new SKPoint((float) (canvasView.CanvasSize.Width * pt.X / canvasView.Width),
                 (float) (canvasView.CanvasSize.Height * pt.Y / canvasView.Height));
+        }
+
+        SKPoint[] ReverseLine(BondPath bp)
+        {
+            var x = bp.GetLine();
+            x.Reverse();
+            return x;
         }
 
         private void ClearCanvas_OnClicked(object sender, EventArgs e)
@@ -271,7 +276,7 @@ namespace OrganicChemistryApp.Views
         private void MakeNewPathFromPoint(TouchActionEventArgs args, SKPoint pt)
         {
             inProgressPaths.Remove(args.Id);
-            SKPath newPath = new SKPath();
+            BondPath newPath = new BondPath();
             newPath.MoveTo(pt);
             inProgressPaths.Add(args.Id, newPath);
         }
@@ -281,26 +286,26 @@ namespace OrganicChemistryApp.Views
         {
             float x = pixel.X;
             float y = pixel.Y;
-            var pathList = new List<SKPath>();
+            var pathList = new List<BondPath>();
             const float len = 200;
             const double ang = 0.5477400137;
 
-            var path = new SKPath();
+            var path = new BondPath();
             path.MoveTo(x, y);
             path.LineTo(x + len * (float) Math.Cos(ang), y + len * (float) Math.Sin(ang));
             pathList.Add(path);
 
-            path = new SKPath();
+            path = new BondPath();
             path.MoveTo(x, y);
             path.LineTo(x + len * (float) Math.Cos(ang), y - len * (float) Math.Sin(ang));
             pathList.Add(path);
 
-            path = new SKPath();
+            path = new BondPath();
             path.MoveTo(x, y);
             path.LineTo(x - len * (float) Math.Cos(ang), y + len * (float) Math.Sin(ang));
             pathList.Add(path);
 
-            path = new SKPath();
+            path = new BondPath();
             path.MoveTo(x, y);
             path.LineTo(x - len * (float) Math.Cos(ang), y - len * (float) Math.Sin(ang));
             pathList.Add(path);
@@ -313,30 +318,45 @@ namespace OrganicChemistryApp.Views
         {
             float x = pixel.X;
             float y = pixel.Y;
-            var pathList = new List<SKPath>();
+            var pathList = new List<BondPath>();
             const float len = 200;
 
-            var path = new SKPath();
+            var path = new BondPath();
             path.MoveTo(x, y);
             path.LineTo(x, y + len );
             pathList.Add(path);
 
-            path = new SKPath();
+            path = new BondPath();
             path.MoveTo(x, y);
             path.LineTo(x, y - len );
             pathList.Add(path);
 
-            path = new SKPath();
+            path = new BondPath();
             path.MoveTo(x, y);
             path.LineTo(x + len , y);
             pathList.Add(path);
 
-            path = new SKPath();
+            path = new BondPath();
             path.MoveTo(x, y);
             path.LineTo(x - len, y);
             pathList.Add(path);
 
             guidePaths[pixel].AddRange(pathList);
+        }
+
+        private BondOrder BondOrderFromPicker()
+        {
+            switch (Picker.SelectedIndex)
+            {
+                case -1:
+                case 0:
+                    return BondOrder.Single;
+                case 1:
+                    return BondOrder.Double;
+                case 2:
+                    return BondOrder.Triple;
+            }
+            return BondOrder.Single;
         }
 
         private void Undo_OnClicked(object sender, EventArgs e)
@@ -375,8 +395,8 @@ namespace OrganicChemistryApp.Views
                 return;
             try
             {
-                var stream = assembly.GetManifestResourceStream(resourceName);
-                var ele = new Element(inpStr, stream);
+
+                var ele = eb.CreateElement(inpStr);
                 var key = guidePaths.Last().Key;
                 if (!diffElements.ContainsKey(key))
                     diffElements.Add(key, ele);
@@ -395,16 +415,17 @@ namespace OrganicChemistryApp.Views
            
         }
 
-        private void Chemical_Searched(object sender, EventArgs e)
+        async void Chemical_Searched(object sender, EventArgs e)
         {
             if (completedPaths.Count == 0)
                 return;
-            Stream stream = assembly.GetManifestResourceStream(resourceName);
-            var carbon = new Element("C", stream);
+            var carbon = eb.CreateElement("C");
             var atomdict = new Dictionary<SKPoint,AtomNode>();
+            Molecule mole = new Molecule();
+
+
             foreach (var x in completedPaths)
             {
-                //BondOrder order = bondOrders[x];
                 var line = x.GetLine();
 
                 var first = line[0];
@@ -417,34 +438,31 @@ namespace OrganicChemistryApp.Views
                         ? new AtomNode(diffElements[first])
                         : new AtomNode(carbon);
                     atomdict.Add(first,atom);
+                    mole = new Molecule(atom);
                 }
 
-                else if (!atomdict.ContainsKey(second))
+                if (!atomdict.ContainsKey(second))
                 {
                     var atom2 = diffElements.ContainsKey(second)
                         ? new AtomNode(diffElements[second])
                         : new AtomNode(carbon);
-                    atomdict[first].AddBond(atom2, BondOrder.Single);
                     atomdict.Add(second, atom2);
                 }
 
-                else if (atomdict.ContainsKey(second))
-                {
-                    atomdict[first].AddBond(atomdict[second], BondOrder.Single);
-                }
+                mole.AddBond(x.Order, atomdict[first], atomdict[second]);
 
-                
             }
-            var mole = new Molecule(atomdict.First().Value);
-            atomdict.Remove(atomdict.First().Key);
-            mole.Atoms.AddRange(atomdict.Values);
-            Title = mole.ToSMILES();
+
+            var smiles = mole.ToSMILES().Replace('=', '£');
+            await Shell.Current.GoToAsync($"resultpage?result={smiles}");
         }
 
-        private void RingButton_OnClicked(object sender, EventArgs e)
+        private void SearchBar_OnSearchButtonPressed(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
+
+
     }
 
 }

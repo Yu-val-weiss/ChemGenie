@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Remoting.Messaging;
 
 namespace Chemicals
@@ -36,7 +37,8 @@ namespace Chemicals
         public AtomNode(string symbol)
         {
             if (Bonds != null) Bonds.Capacity = 8;
-            Element = new Element(symbol);
+            var eb = new ElementBuilder();
+            Element = eb.CreateElement(symbol);
         }
 
         /// <summary>
@@ -102,6 +104,7 @@ namespace Chemicals
         /// </summary>
         /// <returns></returns>
         public string RingSuffixString() => Element.Symbol + RingSuffix.Item1 + Molecule.BondStringFromOrder(RingSuffix.Item2);
+
     }
 
 }
