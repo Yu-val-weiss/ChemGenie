@@ -4,16 +4,17 @@
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              xmlns:tt="clr-namespace:TouchTracking.Forms;assembly=TouchTracking.Forms"
              x:Class="OrganicChemistryApp.Views.SkiaCanvas"
-             Title="Draw">
+             Title="Draw/Search">
 
     <ContentPage.Content>
         <Grid BackgroundColor="White">
             <skia:SKCanvasView x:Name="canvasView" 
                                PaintSurface="OnCanvasViewPaintSurface"/>
-            <SearchBar VerticalOptions="Start" HorizontalOptions="Center" IsSpellCheckEnabled="False" Placeholder="Search by IUPAC name..."
-                       PlaceholderColor="LightBlue" SearchButtonPressed="SearchBar_OnSearchButtonPressed"/>
+            <SearchBar VerticalOptions="Start" HorizontalOptions="Center" IsSpellCheckEnabled="False" Placeholder="Search by chemical name..."
+                       PlaceholderColor="LightBlue" SearchButtonPressed="SearchBar_OnSearchButtonPressed" TextChanged="SearchBar_OnTextChanged"/>
             <ImageButton Source="atom_icon.png" HorizontalOptions="End" VerticalOptions="End" Clicked="DiffChemical_OnClicked"/>
             <ImageButton Source="beaker_search.png" HorizontalOptions="Start" VerticalOptions="End" Clicked="Chemical_Searched"/>
+            <ActivityIndicator x:Name="Indicator" VerticalOptions="Center" HorizontalOptions="Center" Color="Orange" IsRunning="False"/>
             <Picker x:Name="Picker" HorizontalOptions="Center" VerticalOptions="End" Title="Bond Order" TitleColor="LightSlateGray" HorizontalTextAlignment="Center" 
                     TextColor="LightSlateGray"/>
             <Grid.Effects>

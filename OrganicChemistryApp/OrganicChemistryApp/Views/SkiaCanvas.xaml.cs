@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using TouchTracking;
 using Xamarin.Forms;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Xml;
 using Chemicals;
-using Xamarin.Forms.Xaml;
-using API_Interactions;
 using Element = Chemicals.Element;
+using OrganicChemistryApp.Services;
 
 namespace OrganicChemistryApp.Views
 {
@@ -28,19 +26,34 @@ namespace OrganicChemistryApp.Views
         List<BondPath> completedPaths = new List<BondPath>();
         Dictionary<SKPoint, Element> diffElements = new Dictionary<SKPoint, Element>();
         Stack<string> undoStack = new Stack<string>();
-        private ElementBuilder eb;
+        private readonly ElementBuilder eb;
 
         #region SKPaints
-
-
-
         SKPaint paint = new SKPaint
         {
             Style = SKPaintStyle.Stroke,
             Color = SKColor.Parse("909090"),
             StrokeWidth = 10,
             StrokeCap = SKStrokeCap.Round,
-            StrokeJoin = SKStrokeJoin.Round
+            StrokeJoin = SKStrokeJoin.Round,
+        };
+
+        SKPaint paint2 = new SKPaint
+        {
+            Style = SKPaintStyle.Stroke,
+            Color = SKColors.White,
+            StrokeWidth = 15,
+            StrokeCap = SKStrokeCap.Round,
+            StrokeJoin = SKStrokeJoin.Round,
+        };
+
+        SKPaint paint3 = new SKPaint
+        {
+            Style = SKPaintStyle.Stroke,
+            Color = SKColor.Parse("909090"),
+            StrokeWidth = 30,
+            StrokeCap = SKStrokeCap.Butt,
+            StrokeJoin = SKStrokeJoin.Round,
         };
 
         SKPaint guidePaint = new SKPaint
@@ -52,6 +65,7 @@ namespace OrganicChemistryApp.Views
             StrokeJoin = SKStrokeJoin.Round,
             PathEffect = SKPathEffect.CreateDash(new float[] {15, 15}, 20)
         };
+
         SKPaint elPaint = new SKPaint
         {
             Style = SKPaintStyle.Stroke,
@@ -68,7 +82,6 @@ namespace OrganicChemistryApp.Views
         };
         #endregion
 
-
         public SkiaCanvas()
         {
             InitializeComponent();
@@ -81,7 +94,6 @@ namespace OrganicChemistryApp.Views
             eb = new ElementBuilder(stream);
         }
 
-        
         void TouchEffect_OnTouchAction(object sender, TouchActionEventArgs args)
         {
             switch (args.Type)
@@ -201,24 +213,29 @@ namespace OrganicChemistryApp.Views
 
             foreach (BondPath path in completedPaths)
             {
-                canvas.DrawPath(path, paint);
-                var pth = new BondPath();
                 switch (path.Order)
                 {
                     case BondOrder.Single:
+                        canvas.DrawPath(path,paint);
                         break;
                     case BondOrder.Double:
-                        pth.MoveTo(path[0].X + 10, path[0].Y + 20f);
+                        /*pth.MoveTo(path[0].X + 10, path[0].Y + 20f);
                         pth.LineTo(path.LastPoint.X - 10, path.LastPoint.Y + 20);
-                        canvas.DrawPath(pth, paint);
+                        canvas.DrawPath(pth, paint);*/
+                        canvas.DrawPath(path,paint3);
+                        canvas.DrawPath(path,paint2);
                         break;
                     case BondOrder.Triple:
-                        pth.MoveTo(path[0].X + 10, path[0].Y + 20f);
+                        /*pth.MoveTo(path[0].X + 10, path[0].Y + 20f);
                         pth.LineTo(path.LastPoint.X - 10, path.LastPoint.Y + 20);
                         canvas.DrawPath(pth, paint);
                         pth.MoveTo(path[0].X + 10, path[0].Y - 20f);
                         pth.LineTo(path.LastPoint.X - 10, path.LastPoint.Y - 20);
-                        canvas.DrawPath(pth, paint);
+                        canvas.DrawPath(pth, paint);*/
+                        canvas.DrawPath(path,paint3);
+                        canvas.DrawPath(path,paint2);
+                        elPaint.Color = SKColor.Parse("909090");
+                        canvas.DrawPath(path,elPaint);
                         break;
                 }
             }
@@ -272,7 +289,6 @@ namespace OrganicChemistryApp.Views
             Title = "Draw";
         }
 
-
         private void MakeNewPathFromPoint(TouchActionEventArgs args, SKPoint pt)
         {
             inProgressPaths.Remove(args.Id);
@@ -280,7 +296,6 @@ namespace OrganicChemistryApp.Views
             newPath.MoveTo(pt);
             inProgressPaths.Add(args.Id, newPath);
         }
-
 
         private void SuggestGuidePaths(SKPoint pixel)
         {
@@ -454,15 +469,57 @@ namespace OrganicChemistryApp.Views
             }
 
             var smiles = mole.ToSMILES().Replace('=', '£');
-            await Shell.Current.GoToAsync($"resultpage?result={smiles}");
+            var mass = mole.GetMolecularMass();
+            await Shell.Current.GoToAsync($"resultPage?mass={mass}&search={smiles}");
         }
 
-        private void SearchBar_OnSearchButtonPressed(object sender, EventArgs e)
+        private async void SearchBar_OnSearchButtonPressed(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SearchBar searchBar = (SearchBar) sender;
+            Indicator.IsRunning = true;
+            var dict = new Dictionary<string,string>();
+            var prq = new PugRestQuery(searchBar.Text);
+            try
+            {
+                var response = await prq.GetStringFromIUPAC();
+                var xmlDocument = new XmlDocument();
+                xmlDocument.LoadXml(response);
+                if (xmlDocument.DocumentElement != null)
+                {
+                    var c = xmlDocument.DocumentElement.FirstChild.ChildNodes;
+                    foreach (XmlNode x in c)
+                    {
+                        if (x.Name == "CID") continue;
+                        dict.Add(x.Name, x.InnerText);
+                    }
+                }
+            }
+            catch (System.Net.Http.HttpRequestException exception)
+            {
+                /*if (exception.Message.Contains("404"))
+                {
+                    await DisplayAlert("Error", "Invalid name", "OK");
+                    Indicator.IsRunning = false;
+                    return;
+                }*/
+                await DisplayAlert("Error", exception.Message, "OK");
+                Indicator.IsRunning = false;
+                return;
+            }
+            
+            var mass = $"{Math.Round(double.Parse(dict["MolecularWeight"]), 1):0.0}";
+            var smiles = dict["CanonicalSMILES"];
+            smiles = smiles.Replace('=', '£');
+
+            Indicator.IsRunning = false;
+            await Shell.Current.GoToAsync($"resultPage?mass={mass}&search={Uri.EscapeDataString(smiles)}&title={Uri.EscapeDataString(searchBar.Text)}");
         }
 
-
+        private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            guidePaths.Clear();
+            canvasView.InvalidateSurface();
+        }
     }
 
 }

@@ -7,10 +7,14 @@
 
   <ItemGroup>
     <None Remove="Elements.xml" />
+    <None Remove="periodic_table.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Elements.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="periodic_table.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
@@ -19,16 +23,18 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.2" />
     <PackageReference Include="TouchTracking.Forms" Version="1.1.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />  
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\API_Interactions\API_Interactions.csproj" />
     <ProjectReference Include="..\..\Chemicals\Chemicals.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\TablePage.xaml.cs">
+      <DependentUpon>TablePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ResultPage.xaml.cs">
       <DependentUpon>ResultPage.xaml</DependentUpon>
     </Compile>

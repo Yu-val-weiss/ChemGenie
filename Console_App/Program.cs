@@ -5,23 +5,22 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using API_Interactions;
+using OrganicChemistryApp.Services;
 using Chemicals;
 
 namespace Console_App
 {
     class Program
     {
-        static async Task Main()
+        static void Main()
         {
-            var c0 = new AtomNode("C");
+            /*var c0 = new AtomNode("C");
             var c1 = new AtomNode("C");
             var c2 = new AtomNode("C");
             var c3 = new AtomNode("C");
             var c4 = new AtomNode("C");
             var c5 = new AtomNode("C");
             
-            Console.WriteLine(c5.Element.Colour);
             var mole = new Molecule(c0);
             mole.AddBondToLast(BondOrder.Single, c1);
             mole.AddBond(BondOrder.Single, c1, c2);
@@ -31,12 +30,12 @@ namespace Console_App
             mole.AddBondToLast(BondOrder.Single, c0);
 
             string smiles = mole.ToSMILES();
-            Console.WriteLine(smiles);
+            Console.WriteLine(smiles);*/
 
-            var prq = new PugRestQuery(smiles);
+            var prq = new PugRestQuery("ethanol");
             try
             {
-                var response = await prq.GetString();
+                var response = prq.GetStringFromIUPAC().Result;
                 var xmlDocument = new XmlDocument();
                 xmlDocument.LoadXml(response);
                 var c = xmlDocument.DocumentElement.FirstChild.ChildNodes;
@@ -51,8 +50,7 @@ namespace Console_App
                 Console.WriteLine(e.HResult);
                 Console.WriteLine(e.Message);
             }
-            
-            
+
             Console.ReadKey();
 
         }

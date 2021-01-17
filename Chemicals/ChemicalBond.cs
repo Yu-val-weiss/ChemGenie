@@ -40,10 +40,5 @@
             ThisElement = thisElement;
             BondedElement = bondedElement;
         }
-
-        public ChemicalBond InverseBond()
-        {
-            return new ChemicalBond(BondOrder, BondedElement, ThisElement);
-        }
     }
 }

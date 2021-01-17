@@ -1,8 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Xml;
-using System.Globalization;
-using System.IO;
+﻿using System.Text;
 
 namespace Chemicals
 {
@@ -32,6 +28,11 @@ namespace Chemicals
         /// </summary>
         public readonly string Colour;
         /// <summary>
+        /// Valency, used to calculate implicit Hydrogens
+        /// </summary>
+        public readonly int Valency;
+
+        /// <summary>
         /// Creates a new <seealso cref="Element"/>
         /// </summary>
         /// <param name="number"></param>
@@ -39,13 +40,14 @@ namespace Chemicals
         /// <param name="name"></param>
         /// <param name="mass"></param>
         /// <param name="colour"></param>
-        internal Element(int number, string symbol, string name, float mass, string colour)
+        internal Element(int number, string symbol, string name, float mass, string colour, int valency = 0)
         {
             Number = number;
             Symbol = symbol;
             Name = name;
             Mass = mass;
             Colour = colour;
+            Valency = valency;
         }
 
         public string DataPrint()

@@ -54,13 +54,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\API_Interactions\API_Interactions.csproj">
-      <Project>{467c884c-a414-4376-933d-19e85014300c}</Project>
-      <Name>API_Interactions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Chemicals\Chemicals.csproj">
       <Project>{ddc82172-4317-419d-a11d-eb135f62a63f}</Project>
       <Name>Chemicals</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrganicChemistryApp\OrganicChemistryApp\OrganicChemistryApp.csproj">
+      <Project>{bfef3da2-4ddd-40cd-9a5b-9efa9ddae194}</Project>
+      <Name>OrganicChemistryApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

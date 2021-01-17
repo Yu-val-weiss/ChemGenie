@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml;
 
 namespace Chemicals
 {
@@ -83,11 +81,12 @@ namespace Chemicals
         Dictionary<AtomNode,bool> visited = new Dictionary<AtomNode, bool>(); //maintains all visited AtomNodes for Kosaraju
         Stack<AtomNode> stack = new Stack<AtomNode>();//stack that orders by time of visit
         public Dictionary<AtomNode, List<AtomNode>> SCC = new Dictionary<AtomNode, List<AtomNode>>();//all strongly connected components and their members
+
         /// <summary>
         /// Trims graph to remove any hydrogen atoms and breaks any cycles in the structure to turn it into a spanning tree
         /// </summary>
         // Source https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm
-        public void Kosaraju_Cycle()
+        internal void Kosaraju_Cycle()
         {
             Atoms.RemoveAll(atom => atom.Element.Symbol == "H");
             foreach (AtomNode at in Atoms)
@@ -137,10 +136,6 @@ namespace Chemicals
                 Assign(bond.BondedElement, root);
         }
 
-
-
-
-
         internal static string BondStringFromOrder(BondOrder order)
         {
             var bondTypeString = string.Empty;
@@ -152,7 +147,7 @@ namespace Chemicals
                 case BondOrder.Double:
                     bondTypeString = "=";
                     break;
-                case BondOrder.Triple: //Usually = but need to encode this as %23 otherwise won't work 
+                case BondOrder.Triple: //Usually '#' but need to encode this as %23 otherwise won't work 
                     bondTypeString = "#";
                     break;
                 case BondOrder.Quadruple:
@@ -161,6 +156,29 @@ namespace Chemicals
             }
 
             return bondTypeString;
+        }
+
+        public string GetMolecularMass()
+        {
+            double mass = 0d;
+            foreach (var at in Atoms)
+            {
+                mass += Math.Round(at.Element.Mass,1);
+                int bondnumber = 0;
+                foreach (var bond in at.Bonds)
+                {
+                    bondnumber += (int) bond.BondOrder;
+                }
+
+                foreach (var bond in at.InBonds)
+                {
+                    bondnumber += (int) bond.BondOrder;
+                }
+
+                mass += Math.Max(0, at.Element.Valency - bondnumber - (at.RingSuffix.Item1 == -1 ? 0 : 1));
+            }
+
+            return $"{mass:0.0}";
         }
 
 

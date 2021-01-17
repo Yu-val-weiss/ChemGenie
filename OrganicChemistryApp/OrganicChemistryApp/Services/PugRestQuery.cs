@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 
 
-namespace API_Interactions
+namespace OrganicChemistryApp.Services
 {
     public class PugRestQuery
     {
@@ -53,7 +53,7 @@ namespace API_Interactions
             sb.Append(BaseUri);
             sb.Append("name/");
             sb.Append(_name);
-            sb.Append("/property" + "/CanonicalSMILES,MolecularWeight" + "/XML");
+            sb.Append("/property" + "/IUPACName,MolecularFormula,CanonicalSMILES,MolecularWeight" + "/XML");
             return sb.ToString();
         }
 

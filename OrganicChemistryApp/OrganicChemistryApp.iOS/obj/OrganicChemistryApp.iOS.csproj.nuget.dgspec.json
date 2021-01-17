@@ -4,16 +4,6 @@
     "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj",
-        "projectName": "API_Interactions",
-        "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj"
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
     "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj": {
       "restore": {
         "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj",
@@ -72,7 +62,7 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.8.0.1821, )"
+              "version": "[5.0.0.1874, )"
             }
           }
         }
@@ -116,10 +106,8 @@
         },
         "frameworks": {
           "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj": {
-                "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\API_Interactions\\API_Interactions.csproj"
-              },
               "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj": {
                 "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj"
               }
@@ -134,6 +122,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "dependencies": {
             "NETStandard.Library": {
               "suppressParent": "All",
@@ -159,7 +148,7 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.8.0.1821, )"
+              "version": "[5.0.0.1874, )"
             }
           },
           "imports": [
@@ -172,7 +161,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

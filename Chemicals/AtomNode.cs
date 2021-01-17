@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
 
 namespace Chemicals
 {
@@ -92,7 +90,9 @@ namespace Chemicals
             ringBondedElement.RingSuffix = suffix;
             RingSuffix = suffix;
             RemoveBond(ringBondedElement);
-            
+            var bondToRemove = ringBondedElement.InBonds[ringBondedElement.InBonds.FindIndex(bond => bond.BondedElement == this)];
+            ringBondedElement.InBonds.Remove(bondToRemove);
+
         }
 
         private BondOrder GetBondOrder(AtomNode bondedElement)

@@ -68,9 +68,6 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <BundleResource Include="Resources\materialdesignicons-webfont.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -138,7 +135,7 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -155,9 +152,12 @@
     <BundleResource Include="Resources\tab_search.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\atom_icon.png" />
+    <BundleResource Include="Resources\atom_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\beaker_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\periodic_icon.png" />
   </ItemGroup>
 </Project>

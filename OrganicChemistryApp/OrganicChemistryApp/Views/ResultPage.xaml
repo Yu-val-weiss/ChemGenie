@@ -19,17 +19,19 @@
         <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                 <ContentView Padding="0,10,0,10" VerticalOptions="FillAndExpand">
-                    <Label x:Name="titleLabel" FontSize="Title" Text="TEXT"/>
+                    <Label x:Name="titleLabel" FontSize="Title" Text="loading..."/>
                 </ContentView>
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand">
             <StackLayout VerticalOptions="FillAndExpand">
-                <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                    <Label x:Name="IUPACLabel" FontSize="Title"/>
-                    <Label x:Name="massLabel" Text="MASS" FontSize="Title"/>
+                <StackLayout x:Name="StackLayout" Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                    <Label x:Name="FormulaLabel" Text ="" FontSize="Title"/>
+                    <Label x:Name="MassLabel" Text="" FontSize="Title"/>
+                    <ActivityIndicator x:Name="Indicator" VerticalOptions="Center" HorizontalOptions="Center" 
+                                       BindingContext="{x:Reference Name = Image}" IsRunning="{Binding Path=IsLoading}"  Color="Orange" />
                 </StackLayout>
-                <ContentView VerticalOptions="FillAndExpand">
+                <ContentView x:Name="ContentView"  VerticalOptions="FillAndExpand">
                     <Image Aspect="AspectFit" x:Name="Image"/>
                 </ContentView>
             </StackLayout>
