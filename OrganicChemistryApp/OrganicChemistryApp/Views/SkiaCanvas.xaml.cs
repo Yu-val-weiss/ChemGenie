@@ -6,10 +6,13 @@ using TouchTracking;
 using Xamarin.Forms;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Xml;
 using Chemicals;
 using Element = Chemicals.Element;
+using HttpRequestException = System.Net.Http.HttpRequestException;
 using OrganicChemistryApp.Services;
+using Xamarin.Essentials;
 
 namespace OrganicChemistryApp.Views
 {
@@ -430,10 +433,11 @@ namespace OrganicChemistryApp.Views
            
         }
 
-        async void Chemical_Searched(object sender, EventArgs e)
+        private async void Chemical_Searched(object sender, EventArgs e)
         {
-            if (completedPaths.Count == 0)
+            if (!await CheckNetworkStatus() || completedPaths.Count == 0)
                 return;
+
             var carbon = eb.CreateElement("C");
             var atomdict = new Dictionary<SKPoint,AtomNode>();
             Molecule mole = new Molecule();
@@ -475,10 +479,14 @@ namespace OrganicChemistryApp.Views
 
         private async void SearchBar_OnSearchButtonPressed(object sender, EventArgs e)
         {
+            if (!await CheckNetworkStatus())
+                return;
+
             SearchBar searchBar = (SearchBar) sender;
             Indicator.IsRunning = true;
             var dict = new Dictionary<string,string>();
             var prq = new PugRestQuery(searchBar.Text);
+
             try
             {
                 var response = await prq.GetStringFromIUPAC();
@@ -494,7 +502,7 @@ namespace OrganicChemistryApp.Views
                     }
                 }
             }
-            catch (System.Net.Http.HttpRequestException exception)
+            catch (Exception exception)
             {
                 /*if (exception.Message.Contains("404"))
                 {
@@ -519,6 +527,19 @@ namespace OrganicChemistryApp.Views
         {
             guidePaths.Clear();
             canvasView.InvalidateSurface();
+        }
+
+        private async Task<bool> CheckNetworkStatus()
+        {
+            var current = Connectivity.NetworkAccess;
+            switch (current)
+            {
+                case NetworkAccess.Internet:
+                    return true;
+                default:
+                    await DisplayAlert("Error", "Device must be connected to the internet", "OK");
+                    return false;
+            }
         }
     }
 

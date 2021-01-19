@@ -10,7 +10,7 @@
         <Grid BackgroundColor="White">
             <skia:SKCanvasView x:Name="canvasView" 
                                PaintSurface="OnCanvasViewPaintSurface"/>
-            <SearchBar VerticalOptions="Start" HorizontalOptions="Center" IsSpellCheckEnabled="False" Placeholder="Search by chemical name..."
+            <SearchBar VerticalOptions="Start" HorizontalOptions="Center" IsSpellCheckEnabled="False" Placeholder="Search by chemical name..." x:Name="SearchBar"
                        PlaceholderColor="LightBlue" SearchButtonPressed="SearchBar_OnSearchButtonPressed" TextChanged="SearchBar_OnTextChanged"/>
             <ImageButton Source="atom_icon.png" HorizontalOptions="End" VerticalOptions="End" Clicked="DiffChemical_OnClicked"/>
             <ImageButton Source="beaker_search.png" HorizontalOptions="Start" VerticalOptions="End" Clicked="Chemical_Searched"/>

@@ -3,8 +3,6 @@ C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Co
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Console_App.exe.config
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Console_App.exe
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Console_App.pdb
-C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\API_Interactions.dll
-C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\API_Interactions.pdb
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Console_App.csproj.CopyComplete
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Console_App.exe
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\obj\Debug\Console_App.pdb
@@ -13,3 +11,6 @@ C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Ch
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Elements.xml
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Newtonsoft.Json.dll
 C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\Newtonsoft.Json.xml
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\periodic_table.png
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\OrganicChemistryApp.dll
+C:\Users\yuval\Documents\GitHub\OrganicChemistryApp-NEA\Console_App\bin\Debug\OrganicChemistryApp.pdb
