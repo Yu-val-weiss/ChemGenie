@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using Chemicals;
 using Element = Chemicals.Element;
-using HttpRequestException = System.Net.Http.HttpRequestException;
 using OrganicChemistryApp.Services;
 using Xamarin.Essentials;
 
@@ -289,7 +288,7 @@ namespace OrganicChemistryApp.Views
             diffElements.Clear();
             undoStack.Clear();
             canvasView.InvalidateSurface();
-            Title = "Draw";
+            SearchBar.Text = string.Empty;
         }
 
         private void MakeNewPathFromPoint(TouchActionEventArgs args, SKPoint pt)
@@ -463,7 +462,7 @@ namespace OrganicChemistryApp.Views
                 if (!atomdict.ContainsKey(second))
                 {
                     var keys = atomdict.Keys;
-                    var point = keys.FirstOrDefault(pt => Math.Abs(SKPoint.Distance(pt, second)) < 3);
+                    var point = keys.FirstOrDefault(pt => Math.Abs(SKPoint.Distance(pt, second)) <= 10);
                     if (point != default(SKPoint))
                     {
                         second = point;

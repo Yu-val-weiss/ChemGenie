@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml;
 
 namespace Chemicals
 {
@@ -10,7 +9,6 @@ namespace Chemicals
         public List<AtomNode> Atoms;
         public Molecule(AtomNode atom) => Atoms = new List<AtomNode> { atom };
         public Molecule() => Atoms = new List<AtomNode>();
-        private int Edges;
         /// <summary>
         /// The method ToSMILES converts the Molecule into its "Simplified molecular-input line-entry system" form.
         /// </summary>
@@ -87,15 +85,16 @@ namespace Chemicals
                 firstAtom.AddBond(secondAtom, order);
                 secondAtom.AddBond(firstAtom, order);
             }
-
-            Edges++;
         }
 
         public void AddBondToLast(BondOrder order, AtomNode newAtom) => AddBond(order, Atoms.Last(), newAtom);
 
 
         #region CycleFinding
-
+        //Source for parts of the algorithm https://www.geeksforgeeks.org/print-all-the-cycles-in-an-undirected-graph/
+        /// <summary>
+        /// WHITE -> unvisited, GREY -> began visiting, BLACK -> visit complete (all children visited too)
+        /// </summary>
         private int WHITE = 0, GREY = 1, BLACK = 2;
         Dictionary<AtomNode, int> colour = new Dictionary<AtomNode, int>();
         public Dictionary<AtomNode, List<int>> assign = new Dictionary<AtomNode, List<int>>();
@@ -136,7 +135,9 @@ namespace Chemicals
 
             colour[at] = BLACK;
         }
-
+        /// <summary>
+        /// This functions takes the simple assignments in <seealso cref="assign"/>, tidies them up and places them in <seealso cref="cycles"/>
+        /// </summary>
         void AssignCycles()
         {
             foreach (var x in assign)
@@ -185,12 +186,12 @@ namespace Chemicals
             foreach (var at in Atoms)
             {
                 mass += Math.Round(at.Element.Mass,1);
-                int bondnumber = 0;
+                var bondNumber = 0;
                 foreach (var bondOrder in at.Bonds.Values)
                 {
-                    bondnumber += (int) bondOrder;
+                    bondNumber += (int) bondOrder;
                 }
-                mass += Math.Max(0, at.Element.Valency - bondnumber - (at.RingSuffix.Item1 == -1 ? 0 : 1));
+                mass += Math.Max(0, at.Element.Valency - bondNumber - (at.RingSuffix.Item1 == -1 ? 0 : 1));
             }
 
             return $"{mass:0.0}";
