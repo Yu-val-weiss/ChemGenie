@@ -4,13 +4,7 @@
     /// The enum defining the order of the bond
     /// </summary>
     /// <remarks>Can take the value Single, Double, Triple or Quadruple</remarks>
-    public enum BondOrder
-    {
-        Single = 1,
-        Double, 
-        Triple,
-        Quadruple
-    }
+    
     /// <summary>
     /// The ChemicalBond class
     /// </summary>

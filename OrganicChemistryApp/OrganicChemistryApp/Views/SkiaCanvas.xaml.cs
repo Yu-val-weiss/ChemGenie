@@ -462,10 +462,20 @@ namespace OrganicChemistryApp.Views
 
                 if (!atomdict.ContainsKey(second))
                 {
-                    var atom2 = diffElements.ContainsKey(second)
-                        ? new AtomNode(diffElements[second])
-                        : new AtomNode(carbon);
-                    atomdict.Add(second, atom2);
+                    var keys = atomdict.Keys;
+                    var point = keys.FirstOrDefault(pt => Math.Abs(SKPoint.Distance(pt, second)) < 3);
+                    if (point != default(SKPoint))
+                    {
+                        second = point;
+                    }
+                    else
+                    {
+                        var atom2 = diffElements.ContainsKey(second)
+                            ? new AtomNode(diffElements[second])
+                            : new AtomNode(carbon);
+                        atomdict.Add(second, atom2);
+                    }
+                    
                 }
 
                 mole.AddBond(x.Order, atomdict[first], atomdict[second]);
