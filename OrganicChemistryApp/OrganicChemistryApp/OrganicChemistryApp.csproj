@@ -42,4 +42,8 @@
       <DependentUpon>SkiaCanvas.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
 </Project>

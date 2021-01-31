@@ -305,7 +305,7 @@ namespace OrganicChemistryApp.Views
             float y = pixel.Y;
             var pathList = new List<BondPath>();
             const float len = 200;
-            const double ang = 0.5477400137;
+            const double ang = 0.5235987756; // 30 degrees from horizontal to get 120 deg diagonals for hexagons
 
             var path = new BondPath();
             path.MoveTo(x, y);
@@ -462,7 +462,7 @@ namespace OrganicChemistryApp.Views
                 if (!atomdict.ContainsKey(second))
                 {
                     var keys = atomdict.Keys;
-                    var point = keys.FirstOrDefault(pt => Math.Abs(SKPoint.Distance(pt, second)) <= 10);
+                    var point = keys.FirstOrDefault(pt => Math.Abs(SKPoint.Distance(pt, second)) <= 2);
                     if (point != default(SKPoint))
                     {
                         second = point;

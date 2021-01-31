@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using Xamarin.Forms;
 using System.Reflection;
 using System.Text;
 using OrganicChemistryApp.Services;
+using System.Text.RegularExpressions;
 
 namespace OrganicChemistryApp.Views
 {
@@ -37,7 +39,7 @@ namespace OrganicChemistryApp.Views
             set
             {
                 _massString = Uri.UnescapeDataString(value);
-                MassLabel.Text = $"Mass: {_massString}";
+                MassLabel.Text = $"Mass: {_massString} g/mol";
             }
         }
 
@@ -70,7 +72,10 @@ namespace OrganicChemistryApp.Views
                     }
                 }
                 if (titleLabel.Text == "loading..." || Math.Abs(titleLabel.Text.Length - dict["IUPACName"].Length) <= 5)
+                {
                     titleLabel.Text = dict["IUPACName"];
+                    FunctionalGroups(dict["IUPACName"]);
+                }
                 else
                 {
                     StackLayout.Children.Insert(2,new Label {Text = "Name: " + dict["IUPACName"], FontSize = titleLabel.FontSize});
@@ -137,6 +142,101 @@ namespace OrganicChemistryApp.Views
             }
             return sb.ToString();
         }
-        
+
+        void FunctionalGroups(string name)
+        {
+            var functionalGroups = new List<string>();
+
+            #region Functional Group IFs
+            if (name.Contains("ol") || name.Contains("hydroxy"))
+            {
+                functionalGroups.Add("alcohol");
+            }
+            if (name.Contains("ic acid"))
+            {
+                functionalGroups.Add("carboxylic acid");
+            }
+            if (name.Contains("al"))
+            {
+                functionalGroups.Add("aldehydes");
+            }
+            if (name.Contains("one"))
+            {
+                functionalGroups.Add("ketone");
+            }
+            var x = new Regex("[^r]oxy");
+            if (x.IsMatch(name) || name.Contains("ether"))
+            {
+                functionalGroups.Add("ether");
+            }
+            if (name.Contains("oyl"))
+            {
+                functionalGroups.Add("acyl");
+            }
+            if (name.Contains("oate"))
+            {
+                functionalGroups.Add("ester");
+            }
+            if (name.Contains("amine") || name.Contains("amino"))
+            {
+                functionalGroups.Add("amine");
+            }
+            if (name.Contains("amide"))
+            {
+                functionalGroups.Add("amide");
+            }
+            if (name.Contains("cyano") || name.Contains("nitrile") || name.Contains("cyanide"))
+            {
+                functionalGroups.Add("nitrile");
+            }
+            if (name.Contains("nitro"))
+            {
+                functionalGroups.Add("nitro");
+            }
+
+            if (name.Contains("phenyl") || name.Contains("benzene"))
+            {
+                functionalGroups.Add("benzene");
+            }
+            x = new Regex("ene");
+            if (x.IsMatch(name) && !(x.Matches(name).Count == 1 && name.Contains("benzene")))
+            {
+                functionalGroups.Add("alkene");
+            }
+            x = new Regex("[^on]yl");
+            if (x.IsMatch(name))
+            {
+                functionalGroups.Add("alkyl");
+            }
+            if (name.Contains("yne"))
+            {
+                functionalGroups.Add("alkyne");
+            }
+            #endregion
+
+            if (functionalGroups.Count > 0)
+            {
+                functionalGroups.Sort();
+                var sb = new StringBuilder("Functional groups: ");
+                foreach (var s in functionalGroups)
+                {
+                    sb.Append(s + ", ");
+                }
+
+                sb.Remove(sb.Length - 2, 2);
+
+                FunctionalGroupsLabel.Text = sb.ToString();
+            }
+
+
+        }
+    }
+
+    public class AspectRatioContainer : ContentView
+    {
+        protected override SizeRequest OnSizeRequest(double widthConstraint, double heightConstraint)
+        {
+            return new SizeRequest(new Size(widthConstraint, widthConstraint));
+        }
     }
 }

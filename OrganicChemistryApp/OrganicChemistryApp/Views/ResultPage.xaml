@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:th="clr-namespace:OrganicChemistryApp.Views;assembly=OrganicChemistryApp"
              x:Class="OrganicChemistryApp.Views.ResultPage"
              Title="Result">
 
@@ -23,18 +24,19 @@
                 </ContentView>
             </StackLayout>
         </StackLayout>
-        <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand">
-            <StackLayout VerticalOptions="FillAndExpand">
-                <StackLayout x:Name="StackLayout" Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                    <Label x:Name="FormulaLabel" Text ="" FontSize="Title"/>
-                    <Label x:Name="MassLabel" Text="" FontSize="Title"/>
-                    <ActivityIndicator x:Name="Indicator" VerticalOptions="Center" HorizontalOptions="Center" 
-                                       BindingContext="{x:Reference Name = Image}" IsRunning="{Binding Path=IsLoading}"  Color="Orange" />
-                </StackLayout>
-                <ContentView x:Name="ContentView"  VerticalOptions="FillAndExpand">
-                    <Image Aspect="AspectFit" x:Name="Image"/>
-                </ContentView>
+        <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand" x:Name="ScrollView">
+            <StackLayout x:Name="StackLayout" Orientation="Vertical" Padding="30,24,30,24" Spacing="10" VerticalOptions="FillAndExpand">
+                <Label x:Name="FormulaLabel" Text ="" FontSize="Title"/>
+                <Label x:Name="MassLabel" Text="" FontSize="Title"/>
+                <Label x:Name="FunctionalGroupsLabel" Text="" FontSize="Title"/>
+                <ActivityIndicator x:Name="Indicator" VerticalOptions="Center" HorizontalOptions="Center" 
+                                   BindingContext="{x:Reference Name = Image}" IsRunning="{Binding Path=IsLoading}"  Color="Orange" />
+                <th:AspectRatioContainer>
+                    <Image Aspect="Fill" x:Name="Image"/>
+                </th:AspectRatioContainer>
+                
             </StackLayout>
+
             
         </ScrollView>
 

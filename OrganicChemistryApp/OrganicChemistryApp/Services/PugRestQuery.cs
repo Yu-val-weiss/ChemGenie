@@ -31,7 +31,7 @@ namespace OrganicChemistryApp.Services
         {
             var sb = new StringBuilder();
             sb.Append(BaseUri);
-            sb.Append("fastidentity/smiles/");
+            sb.Append("smiles/");
             sb.Append(_name);
             sb.Append("/property" + "/IUPACName,MolecularFormula" + "/XML");
             return sb.ToString();
@@ -41,7 +41,7 @@ namespace OrganicChemistryApp.Services
         {
             var sb = new StringBuilder();
             sb.Append(BaseUri);
-            sb.Append("fastidentity/smiles/");
+            sb.Append("smiles/");
             sb.Append(_name);
             sb.Append("/PNG");
             return sb.ToString();
