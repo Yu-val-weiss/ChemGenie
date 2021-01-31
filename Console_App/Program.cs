@@ -23,13 +23,13 @@ namespace Console_App
             
             var mole = new Molecule(c0);
             mole.AddBondToLast(BondOrder.Single, c1);
-            mole.AddBond(BondOrder.Single, c1, c2);
+            mole.AddBond(BondOrder.Double, c1, c2);
             mole.AddBond(BondOrder.Single,c2, c3);
-            mole.AddBondToLast(BondOrder.Single, c4);
+            mole.AddBondToLast(BondOrder.Double, c4);
             mole.AddBondToLast(BondOrder.Single, c5);
-            mole.AddBondToLast(BondOrder.Single, c0);
+            mole.AddBondToLast(BondOrder.Double, c0);
 
-            var o0 = new AtomNode("O");
+            /*var o0 = new AtomNode("O");
             var o1 = new AtomNode("O");
             var cb0 = new AtomNode("C");
             var cb1 = new AtomNode("C");
@@ -58,6 +58,7 @@ namespace Console_App
                 Console.WriteLine(sb.ToString());
             }
             Console.WriteLine(smiles);
+            Console.WriteLine(mole.GetMolecularMass());
 
             /*var prq = new PugRestQuery("ethanol");
             try

@@ -36,20 +36,20 @@ namespace Chemicals
 
         internal string ToSmilesRec(AtomNode at, AtomNode parent)
         {
-            var bonds = at.Bonds;
+            var bonds = new Dictionary<AtomNode,BondOrder>(at.Bonds);
             if (parent != null)
                 bonds.Remove(parent);
-            var ringNumber = at.RingSuffix.Item1;
+            var ringNumber = at.RingSuffixes.Count;
             switch (bonds.Count)
             {
                 case 0:
-                    return ringNumber == -1 ? at.Element.Symbol : at.RingSuffixString();
+                    return ringNumber == 0 ? at.Element.Symbol : at.RingSuffixString();
                 case 1:
-                    return ringNumber == -1 ? at.Element.Symbol + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at) : 
+                    return ringNumber == 0 ? at.Element.Symbol + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at) : 
                         at.RingSuffixString() + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at);
                 default:
-                    string s = ringNumber == -1 ? at.Element.Symbol : at.RingSuffixString();
-                    foreach (var t in bonds.OrderBy(bond => bond.Key.Bonds.Count + 2 * bond.Key.RingSuffix.Item1))
+                    string s = ringNumber == 0 ? at.Element.Symbol : at.RingSuffixString();
+                    foreach (var t in bonds.OrderBy(bond => bond.Key.Bonds.Count + 2 * bond.Key.RingSuffixes.Keys.ToList().Sum(x => x)))
                     {
                         string tsr = ToSmilesRec(t.Key, at);
                         var count = tsr.Count(char.IsDigit);
@@ -182,7 +182,7 @@ namespace Chemicals
 
         public string GetMolecularMass()
         {
-            double mass = 0d;
+            var mass = 0d;
             foreach (var at in Atoms)
             {
                 mass += Math.Round(at.Element.Mass,1);
@@ -191,7 +191,14 @@ namespace Chemicals
                 {
                     bondNumber += (int) bondOrder;
                 }
-                mass += Math.Max(0, at.Element.Valency - bondNumber - (at.RingSuffix.Item1 == -1 ? 0 : 1));
+
+                var ringBonds = 0;
+                foreach (var ring in at.RingSuffixes)
+                {
+                    ringBonds += (int) ring.Value;
+                }
+
+                mass += Math.Max(0, at.Element.Valency - bondNumber - ringBonds);
             }
 
             return $"{mass:0.0}";
