@@ -126,26 +126,20 @@ namespace OrganicChemistryApp.Views
                                     break;
                                 }
                             }
+                            GuidePathTrim(pixel);
                         }
 
                         path.MoveTo(pixel);
                         inProgressPaths.Add(args.Id, path);
 
-                        var compp = new List<SKPoint[]>();
-
-                        if (pixel != ConvertToPixel(args.Location))
-                        {
-                            foreach (var p in completedPaths)
-                                compp.Add(p.GetLine());
-                            guidePaths[pixel].RemoveAll(pth => compp.Contains(pth.GetLine()) || compp.Contains(ReverseLine(pth)));
-                        }
+                        
 
                         if (completedPaths.Count == 0)
                         {
                             SuggestGuidePaths(pixel);
                             SuggestAltGuidePaths(pixel);
                         }
-                            
+
 
                         canvasView.InvalidateSurface();
 
@@ -175,6 +169,7 @@ namespace OrganicChemistryApp.Views
                                 MakeNewPathFromPoint(args, linqPath.LastPoint);
                                 SuggestGuidePaths(linqPath.LastPoint);
                                 SuggestAltGuidePaths(linqPath.LastPoint);
+                                GuidePathTrim(linqPath.LastPoint);
                             }
                            
                         }
@@ -221,19 +216,10 @@ namespace OrganicChemistryApp.Views
                         canvas.DrawPath(path,paint);
                         break;
                     case BondOrder.Double:
-                        /*pth.MoveTo(path[0].X + 10, path[0].Y + 20f);
-                        pth.LineTo(path.LastPoint.X - 10, path.LastPoint.Y + 20);
-                        canvas.DrawPath(pth, paint);*/
                         canvas.DrawPath(path,paint3);
                         canvas.DrawPath(path,paint2);
                         break;
                     case BondOrder.Triple:
-                        /*pth.MoveTo(path[0].X + 10, path[0].Y + 20f);
-                        pth.LineTo(path.LastPoint.X - 10, path.LastPoint.Y + 20);
-                        canvas.DrawPath(pth, paint);
-                        pth.MoveTo(path[0].X + 10, path[0].Y - 20f);
-                        pth.LineTo(path.LastPoint.X - 10, path.LastPoint.Y - 20);
-                        canvas.DrawPath(pth, paint);*/
                         canvas.DrawPath(path,paint3);
                         canvas.DrawPath(path,paint2);
                         elPaint.Color = SKColor.Parse("909090");
@@ -273,11 +259,18 @@ namespace OrganicChemistryApp.Views
                 (float) (canvasView.CanvasSize.Height * pt.Y / canvasView.Height));
         }
 
-        SKPoint[] ReverseLine(BondPath bp)
+        void GuidePathTrim(SKPoint pixel)
         {
-            var x = bp.GetLine();
-            x.Reverse();
-            return x;
+            var guidePathsToRemove = new List<SKPath>();
+            foreach (var p in completedPaths.Where(x => x.Points.Contains(pixel)))
+            {
+                foreach (var g in guidePaths[pixel])
+                {
+                    if (g.GetLine().Intersect(p.GetLine()).Count() == 2)
+                        guidePathsToRemove.Add(g);
+                }
+            }
+            guidePaths[pixel].RemoveAll(pth => guidePathsToRemove.Contains(pth));
         }
 
         private void ClearCanvas_OnClicked(object sender, EventArgs e)
