@@ -1,28 +1,20 @@
-## Welcome to ChemGenie
+# Welcome to ChemGenie
 
-This is a short tutorial to help you with how to use the app
+This is a short tutorial to help you to use the app
+
+## The Draw/Search Page
 
 ### Drawing
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Simply tap anywhere on the screen within the blank canvas and drag to the end of a dotted line to draw a bond, by default a **single** Carbon-Carbon bond.
 
-```markdown
-Syntax highlighted code block
+### Changing Elements
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
+The bottom-right icon ![Image of the Change Elemnt icon](https://github.com/Yu-val-weiss/OrganicChemistryApp-NEA/blob/master/OrganicChemistryApp/OrganicChemistryApp.Android/Resources/drawable/atom_icon.png) on the page will bring up a menu that you can use to change the element by typing in its symbol
 
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
-```
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
