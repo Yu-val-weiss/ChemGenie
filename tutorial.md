@@ -6,22 +6,28 @@ This is a short tutorial to help you to use the app
 
 ### Drawing
 
-Simply tap anywhere on the screen within the blank canvas and drag to the end of a dotted line to draw a bond, by default a **single** Carbon-Carbon bond.
+Simply tap anywhere on the screen within the blank canvas and drag to the end of a dotted line to draw a bond, by default a **single Carbon-Carbon** bond.
 
 ### Changing Elements
 
-The bottom-right icon ![Image of the Change Elemnt icon](https://github.com/Yu-val-weiss/OrganicChemistryApp-NEA/blob/master/OrganicChemistryApp/OrganicChemistryApp.Android/Resources/drawable/atom_icon.png) on the page will bring up a menu that you can use to change the element by typing in its symbol
+The bottom-right icon ![Image of the Change Element icon](https://github.com/Yu-val-weiss/OrganicChemistryApp-NEA/blob/master/OrganicChemistryApp/OrganicChemistryApp.Android/Resources/drawable/atom_icon.png) on the page will bring up a menu that you can use to change the element by typing in its symbol
 
-**Bold** and _Italic_ and `Code` text
+### Searching for your drawing
 
-[Link](url) and ![Image](src)
+The bottom-left icon ![Image of the Search Drawing icon](https://github.com/Yu-val-weiss/OrganicChemistryApp-NEA/blob/master/OrganicChemistryApp/OrganicChemistryApp.Android/Resources/drawable/beaker_search.png) on the page will search the database for the chemical you have drawn then bring up a Results Page
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Changing the bond order
 
-### Jekyll Themes
+Simply tapping the menu which says _Bond Order_ will bring up a menu that will allow you to choose between single, double and triple bonds
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Yu-val-weiss/OrganicChemistryApp-NEA/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Searching by name
 
-### Support or Contact
+The top search bar will enable you to search for a chemical by typing in its IUPAC name, then bring up a Results Page
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Clear and Undo
+
+The **Clear** and **Undo** buttons in the top right will clear the whole page or undo the last action respectively
+
+## Periodic Table
+
+Press the Periodic Table icon on the menu to navigate to a periodic table
