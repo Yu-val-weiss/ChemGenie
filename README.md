@@ -10,11 +10,11 @@ Simply tap anywhere on the screen within the blank canvas and drag to the end of
 
 ### Changing Elements
 
-The bottom-right icon ![Image of the Change Element icon](https://github.com/Yu-val-weiss/OrganicChemistryApp-NEA/blob/gh-pages/atom_icon.png) on the page will bring up a menu that you can use to change the element by typing in its symbol
+The bottom-right icon ![Image of the Change Element icon](https://github.com/Yu-val-weiss/ChemGenie/blob/gh-pages/atom_icon.png) on the page will bring up a menu that you can use to change the element by typing in its symbol
 
 ### Searching for your drawing
 
-The bottom-left icon ![Image of the Search Drawing icon](https://github.com/Yu-val-weiss/OrganicChemistryApp-NEA/blob/gh-pages/beaker_search.png) on the page will search the database for the chemical you have drawn then bring up a Results Page
+The bottom-left icon ![Image of the Search Drawing icon](https://github.com/Yu-val-weiss/ChemGenie/blob/gh-pages/beaker_search.png) on the page will search the database for the chemical you have drawn then bring up a Results Page
 
 ### Changing the bond order
 
