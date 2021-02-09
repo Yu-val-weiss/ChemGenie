@@ -51,7 +51,10 @@ namespace OrganicChemistryApp.Views
                 titleLabel.Text = _titleString;
             }
         }
-
+        /// <summary>
+        /// A task that connects to the PugREST API of the PubChem database to fetch values from the internet
+        /// </summary>
+        /// <returns></returns>
         private async Task SMILESSearcherTask()
         {
             var prq = new PugRestQuery(_searchString);
@@ -88,8 +91,7 @@ namespace OrganicChemistryApp.Views
                 FormulaLabel.TextColor = Color.Red;
                 titleLabel.TextColor = Color.Red;
                 titleLabel.Text = _searchString;
-                //FormulaLabel.Text = e.Message.Contains("500") ? "One of your atoms may have an impossible valency." : "Please try again.";
-                FormulaLabel.Text = e.Message;
+                FormulaLabel.Text = e.Message.Contains("500") ? "One of your atoms may have an impossible valency." : "Please try again.";
             }
         }
         
@@ -142,11 +144,15 @@ namespace OrganicChemistryApp.Views
             }
             return sb.ToString();
         }
-
+        /// <summary>
+        /// Builds the string that contains the names of all the functional groups in the compound
+        /// </summary>
+        /// <param name="name">Name of the compound</param>
         void FunctionalGroups(string name)
         {
             var functionalGroups = new List<string>();
 
+            //A list of "contains" IF statements to parse what functional groups are in the chemical that was searched for
             #region Functional Group IFs
             if (name.Contains("ol") || name.Contains("hydroxy"))
             {
@@ -158,7 +164,7 @@ namespace OrganicChemistryApp.Views
             }
             if (name.Contains("al"))
             {
-                functionalGroups.Add("aldehydes");
+                functionalGroups.Add("aldehyde");
             }
             if (name.Contains("one"))
             {
@@ -194,7 +200,7 @@ namespace OrganicChemistryApp.Views
                 functionalGroups.Add("nitro");
             }
 
-            if (name.Contains("phenyl") || name.Contains("benzene"))
+            if (name.Contains("phenyl") || name.Contains("benz"))
             {
                 functionalGroups.Add("benzene");
             }
@@ -231,7 +237,9 @@ namespace OrganicChemistryApp.Views
 
         }
     }
-
+    /// <summary>
+    /// A custom container that keeps the image in the right aspect ratio
+    /// </summary>
     public class AspectRatioContainer : ContentView
     {
         protected override SizeRequest OnSizeRequest(double widthConstraint, double heightConstraint)

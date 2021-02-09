@@ -259,18 +259,21 @@ namespace OrganicChemistryApp.Views
                 (float) (canvasView.CanvasSize.Height * pt.Y / canvasView.Height));
         }
 
-        void GuidePathTrim(SKPoint pixel)
+        private void GuidePathTrim(SKPoint pixel)
         {
             var guidePathsToRemove = new List<SKPath>();
-            foreach (var p in completedPaths.Where(x => x.Points.Contains(pixel)))
+            foreach (var p in completedPaths)
             {
+                if (!p.Points.Contains(pixel))
+                    continue;
                 foreach (var g in guidePaths[pixel])
                 {
                     if (g.GetLine().Intersect(p.GetLine()).Count() == 2)
                         guidePathsToRemove.Add(g);
                 }
             }
-            guidePaths[pixel].RemoveAll(pth => guidePathsToRemove.Contains(pth));
+            if (guidePaths.ContainsKey(pixel))
+                guidePaths[pixel].RemoveAll(pth => guidePathsToRemove.Contains(pth));
         }
 
         private void ClearCanvas_OnClicked(object sender, EventArgs e)
@@ -405,7 +408,6 @@ namespace OrganicChemistryApp.Views
                 return;
             try
             {
-
                 var ele = eb.CreateElement(inpStr);
                 var key = guidePaths.Last().Key;
                 if (!diffElements.ContainsKey(key))
@@ -456,7 +458,7 @@ namespace OrganicChemistryApp.Views
                 {
                     var keys = atomdict.Keys;
                     var point = keys.FirstOrDefault(pt => Math.Abs(SKPoint.Distance(pt, second)) <= 2);
-                    if (point != default(SKPoint))
+                    if (point != default)
                     {
                         second = point;
                     }
@@ -506,13 +508,14 @@ namespace OrganicChemistryApp.Views
             }
             catch (Exception exception)
             {
-                /*if (exception.Message.Contains("404"))
+                if (exception.Message.Contains("404"))
                 {
                     await DisplayAlert("Error", "Invalid name", "OK");
-                    Indicator.IsRunning = false;
-                    return;
-                }*/
-                await DisplayAlert("Error", exception.Message, "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Error", exception.Message, "OK");
+                }
                 Indicator.IsRunning = false;
                 return;
             }

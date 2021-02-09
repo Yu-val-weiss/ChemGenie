@@ -9,9 +9,9 @@ using Xamarin.Forms.Xaml;
 namespace OrganicChemistryApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class TutorialPage : ContentPage
     {
-        public LoginPage()
+        public TutorialPage()
         {
             InitializeComponent();
         }

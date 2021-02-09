@@ -32,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\TutorialPage.xaml.cs">
+      <DependentUpon>TutorialPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TablePage.xaml.cs">
       <DependentUpon>TablePage.xaml</DependentUpon>
     </Compile>

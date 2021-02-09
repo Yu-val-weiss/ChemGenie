@@ -16,7 +16,7 @@ namespace OrganicChemistryApp
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            await Current.GoToAsync("//TutorialPage");
         }
     }
 }
