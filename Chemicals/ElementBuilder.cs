@@ -26,6 +26,11 @@ namespace Chemicals
             }
         }
 
+        /// <summary>
+        /// Creates Element
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <returns>Element</returns>
         public Element CreateElement(string symbol)
         {
             var elementNode = docNode.SelectSingleNode($"/elements/element[symbol = \"{symbol}\"]");
@@ -38,8 +43,8 @@ namespace Chemicals
             var mass = float.Parse(nodesList[3].InnerText);
             var colour = nodesList[4].InnerText;
             var valency = Math.Abs(int.Parse(nodesList[12].InnerText));
-            
-            return new Element(number,symbol,name,mass,colour,valency);
+
+            return new Element(number, symbol, name, mass, colour, valency);
         }
     }
 }

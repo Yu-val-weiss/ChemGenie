@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 
 namespace Chemicals
 {
@@ -15,6 +16,7 @@ namespace Chemicals
         /// <returns>ToSMILES returns the SMILES string for the molecule</returns>
         public string ToSMILES()
         {
+            RemoveHydrogens();
             var parents = new Dictionary<AtomNode, AtomNode>();
             foreach (var atom in Atoms)
             {
@@ -180,6 +182,16 @@ namespace Chemicals
             return bondTypeString;
         }
 
+        internal void RemoveHydrogens()
+        {
+            var hyds = Atoms.FindAll(x => x.Element.Symbol == "H");
+            foreach (var atom in hyds)
+            {
+                foreach(var at in atom.Bonds.Keys)
+                    at.RemoveBond(atom);
+            }
+            Atoms.RemoveAll(a => hyds.Contains(a));
+        }
         public string GetMolecularMass()
         {
             var mass = 0d;

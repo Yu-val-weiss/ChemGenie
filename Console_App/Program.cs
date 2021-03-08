@@ -20,6 +20,7 @@ namespace Console_App
             var c3 = new AtomNode("C");
             var c4 = new AtomNode("C");
             var c5 = new AtomNode("C");
+            var h = new AtomNode("H");
             
             var mole = new Molecule(c0);
             mole.AddBondToLast(BondOrder.Single, c1);
@@ -28,6 +29,7 @@ namespace Console_App
             mole.AddBondToLast(BondOrder.Double, c4);
             mole.AddBondToLast(BondOrder.Single, c5);
             mole.AddBondToLast(BondOrder.Double, c0);
+            mole.AddBondToLast(BondOrder.Single, h);
 
             /*var o0 = new AtomNode("O");
             var o1 = new AtomNode("O");
@@ -49,21 +51,13 @@ namespace Console_App
 
             string smiles = mole.ToSMILES();
 
-            foreach (var c in mole.cycles)
-            {
-                var sb = new StringBuilder();
-                sb.Append(c.Key + ": ");
-                foreach (var x in c.Value)
-                   sb.Append(x.Element.Symbol + " ");
-                Console.WriteLine(sb.ToString());
-            }
             Console.WriteLine(smiles);
             Console.WriteLine(mole.GetMolecularMass());
 
-            /*var prq = new PugRestQuery("ethanol");
+            var prq = new PugRestQuery(smiles);
             try
             {
-                var response = prq.GetStringFromIUPAC().Result;
+                var response = prq.GetStringFromSmiles().Result;
                 var xmlDocument = new XmlDocument();
                 xmlDocument.LoadXml(response);
                 var c = xmlDocument.DocumentElement.FirstChild.ChildNodes;
@@ -77,7 +71,7 @@ namespace Console_App
             {
                 Console.WriteLine(e.HResult);
                 Console.WriteLine(e.Message);
-            }*/
+            }
 
             Console.ReadKey();
 
