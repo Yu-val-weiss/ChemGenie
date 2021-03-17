@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     "Xamarin.iOS,Version=v1.0": {
-      "Newtonsoft.Json/12.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        }
-      },
       "SkiaSharp/2.80.2": {
         "type": "package",
         "compile": {
@@ -102,14 +93,15 @@
           "lib/XamariniOS/TouchTracking.Forms.iOS.dll": {}
         }
       },
-      "Xamarin.Essentials/1.6.0": {
+      "Xamarin.Essentials/1.6.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
         },
         "frameworkAssemblies": [
           "OpenTK-1.0",
-          "System.Drawing.Common.dll"
+          "System.Drawing.Common.dll",
+          "System.Numerics"
         ],
         "compile": {
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
@@ -118,7 +110,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/5.0.0.1874": {
+      "Xamarin.Forms/5.0.0.2012": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -255,11 +247,10 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Chemicals": "1.0.0",
-          "Newtonsoft.Json": "12.0.3",
           "SkiaSharp.Views.Forms": "2.80.2",
           "TouchTracking.Forms": "1.1.0",
-          "Xamarin.Essentials": "1.6.0",
-          "Xamarin.Forms": "5.0.0.1874"
+          "Xamarin.Essentials": "1.6.1",
+          "Xamarin.Forms": "5.0.0.2012"
         },
         "compile": {
           "bin/placeholder/OrganicChemistryApp.dll": {}
@@ -270,15 +261,6 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win": {
-      "Newtonsoft.Json/12.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        }
-      },
       "SkiaSharp/2.80.2": {
         "type": "package",
         "compile": {
@@ -352,14 +334,15 @@
           "lib/XamariniOS/TouchTracking.Forms.iOS.dll": {}
         }
       },
-      "Xamarin.Essentials/1.6.0": {
+      "Xamarin.Essentials/1.6.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
         },
         "frameworkAssemblies": [
           "OpenTK-1.0",
-          "System.Drawing.Common.dll"
+          "System.Drawing.Common.dll",
+          "System.Numerics"
         ],
         "compile": {
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
@@ -368,7 +351,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/5.0.0.1874": {
+      "Xamarin.Forms/5.0.0.2012": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -505,11 +488,10 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Chemicals": "1.0.0",
-          "Newtonsoft.Json": "12.0.3",
           "SkiaSharp.Views.Forms": "2.80.2",
           "TouchTracking.Forms": "1.1.0",
-          "Xamarin.Essentials": "1.6.0",
-          "Xamarin.Forms": "5.0.0.1874"
+          "Xamarin.Essentials": "1.6.1",
+          "Xamarin.Forms": "5.0.0.2012"
         },
         "compile": {
           "bin/placeholder/OrganicChemistryApp.dll": {}
@@ -520,15 +502,6 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x64": {
-      "Newtonsoft.Json/12.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        }
-      },
       "SkiaSharp/2.80.2": {
         "type": "package",
         "compile": {
@@ -605,14 +578,15 @@
           "lib/XamariniOS/TouchTracking.Forms.iOS.dll": {}
         }
       },
-      "Xamarin.Essentials/1.6.0": {
+      "Xamarin.Essentials/1.6.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
         },
         "frameworkAssemblies": [
           "OpenTK-1.0",
-          "System.Drawing.Common.dll"
+          "System.Drawing.Common.dll",
+          "System.Numerics"
         ],
         "compile": {
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
@@ -621,7 +595,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/5.0.0.1874": {
+      "Xamarin.Forms/5.0.0.2012": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -758,11 +732,10 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Chemicals": "1.0.0",
-          "Newtonsoft.Json": "12.0.3",
           "SkiaSharp.Views.Forms": "2.80.2",
           "TouchTracking.Forms": "1.1.0",
-          "Xamarin.Essentials": "1.6.0",
-          "Xamarin.Forms": "5.0.0.1874"
+          "Xamarin.Essentials": "1.6.1",
+          "Xamarin.Forms": "5.0.0.2012"
         },
         "compile": {
           "bin/placeholder/OrganicChemistryApp.dll": {}
@@ -773,15 +746,6 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x86": {
-      "Newtonsoft.Json/12.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        }
-      },
       "SkiaSharp/2.80.2": {
         "type": "package",
         "compile": {
@@ -858,14 +822,15 @@
           "lib/XamariniOS/TouchTracking.Forms.iOS.dll": {}
         }
       },
-      "Xamarin.Essentials/1.6.0": {
+      "Xamarin.Essentials/1.6.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
         },
         "frameworkAssemblies": [
           "OpenTK-1.0",
-          "System.Drawing.Common.dll"
+          "System.Drawing.Common.dll",
+          "System.Numerics"
         ],
         "compile": {
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
@@ -874,7 +839,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/5.0.0.1874": {
+      "Xamarin.Forms/5.0.0.2012": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -1011,11 +976,10 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Chemicals": "1.0.0",
-          "Newtonsoft.Json": "12.0.3",
           "SkiaSharp.Views.Forms": "2.80.2",
           "TouchTracking.Forms": "1.1.0",
-          "Xamarin.Essentials": "1.6.0",
-          "Xamarin.Forms": "5.0.0.1874"
+          "Xamarin.Essentials": "1.6.1",
+          "Xamarin.Forms": "5.0.0.2012"
         },
         "compile": {
           "bin/placeholder/OrganicChemistryApp.dll": {}
@@ -1027,37 +991,6 @@
     }
   },
   "libraries": {
-    "Newtonsoft.Json/12.0.3": {
-      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
-      "type": "package",
-      "path": "newtonsoft.json/12.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.md",
-        "lib/net20/Newtonsoft.Json.dll",
-        "lib/net20/Newtonsoft.Json.xml",
-        "lib/net35/Newtonsoft.Json.dll",
-        "lib/net35/Newtonsoft.Json.xml",
-        "lib/net40/Newtonsoft.Json.dll",
-        "lib/net40/Newtonsoft.Json.xml",
-        "lib/net45/Newtonsoft.Json.dll",
-        "lib/net45/Newtonsoft.Json.xml",
-        "lib/netstandard1.0/Newtonsoft.Json.dll",
-        "lib/netstandard1.0/Newtonsoft.Json.xml",
-        "lib/netstandard1.3/Newtonsoft.Json.dll",
-        "lib/netstandard1.3/Newtonsoft.Json.xml",
-        "lib/netstandard2.0/Newtonsoft.Json.dll",
-        "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.12.0.3.nupkg.sha512",
-        "newtonsoft.json.nuspec",
-        "packageIcon.png"
-      ]
-    },
     "SkiaSharp/2.80.2": {
       "sha512": "D25rzdCwh+3L+XyXqpNa+H/yiLJbE3/R3K/XexwHyQjGdzZvSufFW3oqf3En7hhqSIsxsJ8f5NEZ0J5W5wlGBg==",
       "type": "package",
@@ -1295,10 +1228,10 @@
         "touchtracking.forms.nuspec"
       ]
     },
-    "Xamarin.Essentials/1.6.0": {
-      "sha512": "geJYnjTyPv2npClIkBxLXk9cOV9CPwj/oayA8I4+6NpZc/dIiYxax36m25SW8TrCMR/rvyY44fZBjWBvj7BCQQ==",
+    "Xamarin.Essentials/1.6.1": {
+      "sha512": "gG1Bp4j4bpJQ0dp9MeBJQJ9c8xULauIlhc7Cx5Qw4J2K1c+4Glq5n+gkb9Pm0UA/CevXVqLK5ZXmZkuYI52FgA==",
       "type": "package",
-      "path": "xamarin.essentials/1.6.0",
+      "path": "xamarin.essentials/1.6.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1342,14 +1275,14 @@
         "lib/xamarinwatchos10/Xamarin.Essentials.pdb",
         "lib/xamarinwatchos10/Xamarin.Essentials.xml",
         "readme.txt",
-        "xamarin.essentials.1.6.0.nupkg.sha512",
+        "xamarin.essentials.1.6.1.nupkg.sha512",
         "xamarin.essentials.nuspec"
       ]
     },
-    "Xamarin.Forms/5.0.0.1874": {
-      "sha512": "DddatpRCi4WvM4pBuDfRtKr/KkhFZoVE1KLNFwbOfltVUecqf78y8VaIDDU/iddfNfMSSzoqDBWpZgNj6lFyxA==",
+    "Xamarin.Forms/5.0.0.2012": {
+      "sha512": "Rqc6xvWR/sf+Db5+qRCFmuYTWVp04QWRfwPto2/JHbShSy4Ed53Q2jpoFzsoloXkJA6saD236PlaWAhT6vI4gw==",
       "type": "package",
-      "path": "xamarin.forms/5.0.0.1874",
+      "path": "xamarin.forms/5.0.0.2012",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1558,7 +1491,7 @@
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.5.0.0.1874.nupkg.sha512",
+        "xamarin.forms.5.0.0.2012.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -1575,10 +1508,9 @@
   },
   "projectFileDependencyGroups": {
     "Xamarin.iOS,Version=v1.0": [
-      "Newtonsoft.Json >= 12.0.3",
       "OrganicChemistryApp >= 1.0.0",
-      "Xamarin.Essentials >= 1.6.0",
-      "Xamarin.Forms >= 5.0.0.1874"
+      "Xamarin.Essentials >= 1.6.1",
+      "Xamarin.Forms >= 5.0.0.2012"
     ]
   },
   "packageFolders": {
@@ -1623,17 +1555,13 @@
     "frameworks": {
       "xamarinios10": {
         "dependencies": {
-          "Newtonsoft.Json": {
-            "target": "Package",
-            "version": "[12.0.3, )"
-          },
           "Xamarin.Essentials": {
             "target": "Package",
-            "version": "[1.6.0, )"
+            "version": "[1.6.1, )"
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[5.0.0.1874, )"
+            "version": "[5.0.0.2012, )"
           }
         }
       }

@@ -104,6 +104,7 @@ namespace Chemicals
 
         public string RingSuffixString()
         {
+
             var sb = new StringBuilder();
             sb.Append(Element.Symbol);
             foreach (var foo in RingSuffixes)

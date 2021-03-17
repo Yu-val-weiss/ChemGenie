@@ -45,7 +45,7 @@ namespace Chemicals
             switch (bonds.Count)
             {
                 case 0:
-                    return ringNumber == 0 ? at.Element.Symbol : at.RingSuffixString();
+                    return ringNumber == 0 ? at.Element.Symbol : at.RingSuffixString(); 
                 case 1:
                     return ringNumber == 0 ? at.Element.Symbol + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at) : 
                         at.RingSuffixString() + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at);

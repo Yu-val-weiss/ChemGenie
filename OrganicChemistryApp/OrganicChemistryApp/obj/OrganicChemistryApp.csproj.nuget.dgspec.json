@@ -65,10 +65,6 @@
               "version": "[2.0.3, )",
               "autoReferenced": true
             },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[12.0.3, )"
-            },
             "SkiaSharp.Views.Forms": {
               "target": "Package",
               "version": "[2.80.2, )"
@@ -79,11 +75,11 @@
             },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.6.0, )"
+              "version": "[1.6.1, )"
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[5.0.0.1874, )"
+              "version": "[5.0.0.2012, )"
             }
           },
           "imports": [

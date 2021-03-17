@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="OrganicChemistryApp.Views.BondPath">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\SkiaCanvas.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Order" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OrganicChemistryApp.Views.SkiaCanvas">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="elFillPaint" Hidden="true" />
+    </Members>
+    <AssociationLine Name="paint" Type="SkiaSharp.SKPaint" FixedFromPoint="true">
+      <Path>
+        <Point X="8.75" Y="1.057" />
+        <Point X="11" Y="1.057" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.31" Y="0.55" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="paint2" Type="SkiaSharp.SKPaint" FixedFromPoint="true">
+      <Path>
+        <Point X="8.75" Y="0.556" />
+        <Point X="11" Y="0.556" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.125" Y="-0.277" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="paint3" Type="SkiaSharp.SKPaint">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.093" Y="-0.242" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="guidePaint" Type="SkiaSharp.SKPaint" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.688" Y="0.5" />
+        <Point X="8.688" Y="0.125" />
+        <Point X="11.75" Y="0.125" />
+        <Point X="11.75" Y="0.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="0.118" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="elPaint" Type="SkiaSharp.SKPaint" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="1.225" />
+        <Point X="11.75" Y="1.225" />
+        <Point X="11.75" Y="1.191" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.104" Y="0.218" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAkAIAEAMCAIBAAAFQAIAgCAAACgAAgSAAEAAAAAAII=</HashCode>
+      <FileName>Views\SkiaCanvas.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="eb" />
+      <Field Name="paint" />
+      <Field Name="paint2" />
+      <Field Name="paint3" />
+      <Field Name="guidePaint" />
+      <Field Name="elPaint" />
+      <Field Name="elFillPaint" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="inProgressPaths" />
+      <Field Name="completedPaths" />
+      <Field Name="diffElements" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="SkiaSharp.SKPath" Collapsed="true">
+    <Position X="3.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SkiaSharp.SKPaint" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Chemicals.Element" Collapsed="true">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Chemicals.ElementBuilder">
+    <Position X="10" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Enum Name="Chemicals.BondOrder" Collapsed="true">
+    <Position X="3" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
