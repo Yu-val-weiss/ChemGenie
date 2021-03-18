@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Xml;
 
 namespace Chemicals
@@ -216,6 +217,46 @@ namespace Chemicals
             return $"{mass:0.0}";
         }
 
+        public string GetMolecularFormula()
+        {
+            var atoms = new Dictionary<string, int>();
+            foreach (var at in Atoms)
+            {
+                var ele = at.Element;
+                if (atoms.ContainsKey(ele.Symbol))
+                    atoms[ele.Symbol]++;
+                else
+                {
+                    atoms.Add(ele.Symbol, 1);
+                }
+                var bondNumber = 0;
+                foreach (var bondOrder in at.Bonds.Values)
+                {
+                    bondNumber += (int)bondOrder;
+                }
+
+                var ringBonds = 0;
+                foreach (var ring in at.RingSuffixes)
+                {
+                    ringBonds += (int)ring.Value;
+                }
+
+                if (atoms.ContainsKey("H"))
+                    atoms["H"] += Math.Max(0, ele.Valency - bondNumber - ringBonds);
+                else
+                {
+                    atoms.Add("H", Math.Max(0, ele.Valency - bondNumber - ringBonds));
+                }
+            }
+            var sb = new StringBuilder();
+            foreach (var a in atoms)
+            {
+                sb.Append(a.Key);
+                if (a.Value > 1)
+                    sb.Append(a.Value);
+            }
+            return sb.ToString();
+        }
 
 
 

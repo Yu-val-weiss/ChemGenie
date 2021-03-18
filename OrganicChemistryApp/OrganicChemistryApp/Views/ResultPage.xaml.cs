@@ -13,6 +13,7 @@ namespace OrganicChemistryApp.Views
 {
     [QueryProperty("TitleString", "title")]
     [QueryProperty("MassString", "mass")]
+    [QueryProperty("FormulaString", "formula")]
     [QueryProperty("SearchString","search")]
     public partial class ResultPage : ContentPage
     {
@@ -20,6 +21,7 @@ namespace OrganicChemistryApp.Views
         private string _massString;
         private string _imageString;
         private string _titleString;
+        private string _formulaString;
         public string SearchString
         {
             set
@@ -51,6 +53,14 @@ namespace OrganicChemistryApp.Views
                 titleLabel.Text = _titleString;
             }
         }
+        public string FormulaString
+        {
+            set
+            {
+                _formulaString = ConvertToSubscript(Uri.UnescapeDataString(value));
+                FormulaLabel.Text = $"Formula: {_formulaString}";
+            }
+        }
         /// <summary>
         /// A task that connects to the PugREST API of the PubChem database to fetch values from the internet
         /// </summary>
@@ -70,9 +80,16 @@ namespace OrganicChemistryApp.Views
                     var c = xmlDocument.DocumentElement.FirstChild.ChildNodes;
                     foreach (XmlNode x in c)
                     {
-                        if (x.Name == "CID") continue;
                         dict.Add(x.Name,x.InnerText);
                     }
+                }
+                if (dict["CID"] == "0")
+                {
+                    titleLabel.Text = _formulaString;
+                    StackLayout.Children.RemoveAt(0);
+                    StackLayout.Children.RemoveAt(2);
+                    await DisplayAlert("Error", "Could not name this molecule", "OK");
+                    return;
                 }
                 if (titleLabel.Text == "loading..." || Math.Abs(titleLabel.Text.Length - dict["IUPACName"].Length) <= 5)
                 {
@@ -83,15 +100,17 @@ namespace OrganicChemistryApp.Views
                 {
                     StackLayout.Children.Insert(2,new Label {Text = "Name: " + dict["IUPACName"], FontSize = titleLabel.FontSize});
                 }
-                
-                FormulaLabel.Text = "Formula: " + ConvertToSubscript(dict["MolecularFormula"]);
+
+                var form = "Formula: " + ConvertToSubscript(dict["MolecularFormula"]);
+                if (_formulaString != form)
+                    FormulaLabel.Text = form;
             }
             catch (System.Net.Http.HttpRequestException e)
             {
-                FormulaLabel.TextColor = Color.Red;
-                titleLabel.TextColor = Color.Red;
-                titleLabel.Text = _searchString;
-                FormulaLabel.Text = e.Message.Contains("500") ? "One of your atoms may have an impossible valency." : "Please try again.";
+                await DisplayAlert("Error",
+                    e.Message.Contains("400") ? "One of your atoms may have an impossible valency." : "An unexpected error occurred, please try again.", 
+                    "OK");
+                await Shell.Current.GoToAsync("..");
             }
         }
         

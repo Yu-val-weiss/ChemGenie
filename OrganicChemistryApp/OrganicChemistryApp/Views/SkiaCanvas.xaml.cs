@@ -478,7 +478,8 @@ namespace OrganicChemistryApp.Views
 
             var smiles = mole.ToSMILES().Replace('=', '£');
             var mass = mole.GetMolecularMass();
-            await Shell.Current.GoToAsync($"resultPage?mass={mass}&search={smiles}");
+            var formula = mole.GetMolecularFormula();
+            await Shell.Current.GoToAsync($"resultPage?mass={mass}&search={smiles}&formula={formula}");
         }
 
         private async void SearchBar_OnSearchButtonPressed(object sender, EventArgs e)
