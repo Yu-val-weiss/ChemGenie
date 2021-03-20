@@ -22,7 +22,7 @@ Simply tapping the menu which says _Bond Order_ will bring up a menu that will a
 
 ### Searching by name
 
-The top search bar will enable you to search for a chemical by typing in its IUPAC name, then bring up a Results Page
+The top search bar will enable you to search for a chemical by typing in its IUPAC name (e.g. but-2-ene) or its common name (e.g. paracetamol), then bring up a Results Page
 
 ### Clear and Undo
 
