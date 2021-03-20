@@ -432,6 +432,8 @@ namespace OrganicChemistryApp.Views
             if (!await CheckNetworkStatus() || completedPaths.Count == 0)
                 return;
 
+            guidePaths.Clear();
+
             var carbon = eb.CreateElement("C");
             var atomdict = new Dictionary<SKPoint,AtomNode>();
             Molecule mole = new Molecule();
@@ -476,7 +478,8 @@ namespace OrganicChemistryApp.Views
 
             }
 
-            var smiles = mole.ToSMILES().Replace('=', '£');
+            var smiles = mole.ToSMILES().Replace("=", "%3D");
+            smiles = smiles.Replace("#", "%23");
             var mass = mole.GetMolecularMass();
             var formula = mole.GetMolecularFormula();
             await Shell.Current.GoToAsync($"resultPage?mass={mass}&search={smiles}&formula={formula}");
@@ -486,6 +489,8 @@ namespace OrganicChemistryApp.Views
         {
             if (!await CheckNetworkStatus())
                 return;
+
+            guidePaths.Clear();
 
             SearchBar searchBar = (SearchBar) sender;
             Indicator.IsRunning = true;
@@ -523,7 +528,6 @@ namespace OrganicChemistryApp.Views
             
             var mass = $"{Math.Round(double.Parse(dict["MolecularWeight"]), 1):0.0}";
             var smiles = dict["CanonicalSMILES"];
-            smiles = smiles.Replace('=', '£');
 
             Indicator.IsRunning = false;
             await Shell.Current.GoToAsync($"resultPage?mass={mass}&search={Uri.EscapeDataString(smiles)}&title={Uri.EscapeDataString(searchBar.Text)}");

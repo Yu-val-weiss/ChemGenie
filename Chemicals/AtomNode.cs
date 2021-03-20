@@ -106,7 +106,11 @@ namespace Chemicals
         {
 
             var sb = new StringBuilder();
-            sb.Append(Element.Symbol);
+            var symb = Element.Symbol;
+            var organicSubset = new List<string> { "B", "C", "N", "O", "P", "S", "F", "Cl", "Br", "I" };
+            if (!organicSubset.Contains(symb))
+                symb = "[" + symb + "]";
+            sb.Append(symb);
             foreach (var foo in RingSuffixes)
             {
                 sb.Append(Molecule.BondStringFromOrder(foo.Value));

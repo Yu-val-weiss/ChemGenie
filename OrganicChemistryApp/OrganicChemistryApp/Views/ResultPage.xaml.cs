@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using OrganicChemistryApp.Services;
 using System.Text.RegularExpressions;
+using Xamarin.Forms.Internals;
 
 namespace OrganicChemistryApp.Views
 {
@@ -27,7 +28,7 @@ namespace OrganicChemistryApp.Views
             set
             {
                 _searchString = Uri.UnescapeDataString(value);
-                _searchString = _searchString.Replace('£', '=');
+                _searchString = _searchString.Replace("#", "%23");
 
                 SMILESSearcherTask().Wait(250);
 
@@ -94,16 +95,16 @@ namespace OrganicChemistryApp.Views
                 if (titleLabel.Text == "loading..." || Math.Abs(titleLabel.Text.Length - dict["IUPACName"].Length) <= 5)
                 {
                     titleLabel.Text = dict["IUPACName"];
-                    FunctionalGroups(dict["IUPACName"]);
                 }
                 else
                 {
                     StackLayout.Children.Insert(2,new Label {Text = "Name: " + dict["IUPACName"], FontSize = titleLabel.FontSize});
                 }
 
-                var form = "Formula: " + ConvertToSubscript(dict["MolecularFormula"]);
-                if (_formulaString != form)
-                    FormulaLabel.Text = form;
+                FunctionalGroups(dict["IUPACName"]);
+                var formula = "Formula: " + ConvertToSubscript(dict["MolecularFormula"]);
+                if (_formulaString != formula)
+                    FormulaLabel.Text = formula;
             }
             catch (System.Net.Http.HttpRequestException e)
             {

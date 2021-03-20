@@ -43,15 +43,19 @@ namespace Chemicals
             if (parent != null)
                 bonds.Remove(parent);
             var ringNumber = at.RingSuffixes.Count;
+            var symb = at.Element.Symbol;
+            var organicSubset = new List<string> {"B", "C", "N", "O", "P", "S", "F", "Cl", "Br", "I"};
+            if (!organicSubset.Contains(symb))
+                symb = "[" + symb + "]";
             switch (bonds.Count)
             {
                 case 0:
-                    return ringNumber == 0 ? at.Element.Symbol : at.RingSuffixString(); 
+                    return ringNumber == 0 ? symb : at.RingSuffixString(); 
                 case 1:
-                    return ringNumber == 0 ? at.Element.Symbol + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at) : 
+                    return ringNumber == 0 ? symb + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at) : 
                         at.RingSuffixString() + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at);
                 default:
-                    string s = ringNumber == 0 ? at.Element.Symbol : at.RingSuffixString();
+                    string s = ringNumber == 0 ? symb : at.RingSuffixString();
                     foreach (var t in bonds.OrderBy(bond => bond.Key.Bonds.Count + 2 * bond.Key.RingSuffixes.Keys.ToList().Sum(x => x)))
                     {
                         string tsr = ToSmilesRec(t.Key, at);
