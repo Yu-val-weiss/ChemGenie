@@ -6,7 +6,7 @@ This is a short tutorial to help you to use the app
 
 ### Drawing
 
-Simply tap anywhere on the screen within the blank canvas and drag to the end of a dotted guide line to draw a bond, by default a **single Carbon-Carbon** bond. If you want to add a bond to an existing atom then simply press on any point/atom, and the dotted guide lines should appear. Tapping on other parts of the canvas will do nothing. 
+Simply tap anywhere on the screen within the blank canvas and drag to the end of a dotted template line to draw a bond, by default a **single Carbon-Carbon** bond. If you want to add a bond to an existing atom then simply press on any point/atom, and the dotted template lines should appear. Tapping on other parts of the canvas will do nothing. 
 
 ### Changing Elements
 
