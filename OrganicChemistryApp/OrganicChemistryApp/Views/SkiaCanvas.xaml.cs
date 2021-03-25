@@ -95,11 +95,18 @@ namespace OrganicChemistryApp.Views
             var stream = assembly.GetManifestResourceStream(resourceName);
             eb = new ElementBuilder(stream);
         }
-
+        /// <summary>
+        /// Processes touch input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         void TouchEffect_OnTouchAction(object sender, TouchActionEventArgs args)
         {
             switch (args.Type)
             {
+                // An individual press
+                // If canvas is blank then it purely suggests the guide paths
+                // If the canvas is not blank then the touch only registers if it hits on an existing atom
                 case TouchActionType.Pressed:
                     if (!inProgressPaths.ContainsKey(args.Id))
                     {
@@ -145,7 +152,7 @@ namespace OrganicChemistryApp.Views
 
                     }
                     break;
-
+                // Drag the line to the end of the template line and then it becomes a 'completed line'
                 case TouchActionType.Moved:
                     if (inProgressPaths.ContainsKey(args.Id))
                     {
@@ -198,7 +205,11 @@ namespace OrganicChemistryApp.Views
 
             }
         }
-
+        /// <summary>
+        /// Draws all the paths
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
         {
             SKCanvas canvas = args.Surface.Canvas;
@@ -258,7 +269,10 @@ namespace OrganicChemistryApp.Views
             return new SKPoint((float) (canvasView.CanvasSize.Width * pt.X / canvasView.Width),
                 (float) (canvasView.CanvasSize.Height * pt.Y / canvasView.Height));
         }
-
+        /// <summary>
+        /// Removes the guidePaths that are already existing bonds so that they cannot be drawn
+        /// </summary>
+        /// <param name="pixel"></param>
         private void GuidePathTrim(SKPoint pixel)
         {
             var guidePathsToRemove = new List<SKPath>();
@@ -294,7 +308,10 @@ namespace OrganicChemistryApp.Views
             newPath.MoveTo(pt);
             inProgressPaths.Add(args.Id, newPath);
         }
-
+        /// <summary>
+        /// Creates the diagonal Guide Paths
+        /// </summary>
+        /// <param name="pixel"></param>
         private void SuggestGuidePaths(SKPoint pixel)
         {
             float x = pixel.X;
@@ -326,7 +343,10 @@ namespace OrganicChemistryApp.Views
             guidePaths.Add(pixel, pathList);
 
         }
-
+        /// <summary>
+        /// Creates the vertical and horizontal Guide Paths
+        /// </summary>
+        /// <param name="pixel"></param>
         private void SuggestAltGuidePaths(SKPoint pixel)
         {
             float x = pixel.X;
@@ -356,7 +376,10 @@ namespace OrganicChemistryApp.Views
 
             guidePaths[pixel].AddRange(pathList);
         }
-
+        /// <summary>
+        /// Gets the bond order from the option select at the bottom
+        /// </summary>
+        /// <returns></returns>
         private BondOrder BondOrderFromPicker()
         {
             switch (Picker.SelectedIndex)
@@ -393,7 +416,11 @@ namespace OrganicChemistryApp.Views
             
             canvasView.InvalidateSurface();
         }
-
+        /// <summary>
+        /// Changes the atom at the current point
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void DiffChemical_OnClicked(object sender, EventArgs e)
         {
             if (guidePaths.Count == 0)

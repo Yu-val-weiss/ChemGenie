@@ -30,7 +30,7 @@ namespace OrganicChemistryApp.Views
                 _searchString = Uri.UnescapeDataString(value);
                 _searchString = _searchString.Replace("#", "%23");
 
-                SMILESSearcherTask().Wait(250);
+                SMILESSearcherTask().Wait(500);
 
                 var src = new UriImageSource { Uri = new Uri(_imageString) };
                 Image.Source = src;
