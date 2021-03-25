@@ -25,6 +25,7 @@ namespace Chemicals
                 colour.Add(atom, WHITE);
                 parents.Add(atom, null);
             }
+
             DFS(Atoms.First(), parents);
             AssignCycles();
             foreach (var x in cycles)
@@ -34,11 +35,14 @@ namespace Chemicals
                 var ringStarter = members.First(at => at.Bonds.ContainsKey(ringCloser));
                 ringStarter.BreakRing(x.Value.Last(), x.Key);
             }
+
             return ToSmilesRec(Atoms.First(), null);
         }
 
-        internal string ToSmilesRec(AtomNode at, AtomNode parent)
+        internal string ToSmilesRec(AtomNode at, AtomNode parent, int overflow = 0)
         {
+            if (overflow >= 50)
+                return "XXOVERFLOWXX";
             var bonds = new Dictionary<AtomNode,BondOrder>(at.Bonds);
             if (parent != null)
                 bonds.Remove(parent);
@@ -52,13 +56,13 @@ namespace Chemicals
                 case 0:
                     return ringNumber == 0 ? symb : at.RingSuffixString(); 
                 case 1:
-                    return ringNumber == 0 ? symb + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at) : 
-                        at.RingSuffixString() + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at);
+                    return ringNumber == 0 ? symb + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at, ++overflow) : 
+                        at.RingSuffixString() + BondStringFromOrder(bonds.Values.First()) + ToSmilesRec(bonds.Keys.First(), at, ++overflow);
                 default:
                     string s = ringNumber == 0 ? symb : at.RingSuffixString();
                     foreach (var t in bonds.OrderBy(bond => bond.Key.Bonds.Count + 2 * bond.Key.RingSuffixes.Keys.ToList().Sum(x => x)))
                     {
-                        string tsr = ToSmilesRec(t.Key, at);
+                        string tsr = ToSmilesRec(t.Key, at, ++overflow);
                         var count = tsr.Count(char.IsDigit);
                         if (count != 1 || tsr.FirstOrDefault(ch => char.IsDigit(ch) && Convert.ToInt32(ch) > 1) != default(char))
                             s += "(" + BondStringFromOrder(t.Value) + tsr + ")";

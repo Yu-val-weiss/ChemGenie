@@ -12,6 +12,7 @@ using Chemicals;
 using Element = Chemicals.Element;
 using OrganicChemistryApp.Services;
 using Xamarin.Essentials;
+using Exception = System.Exception;
 
 namespace OrganicChemistryApp.Views
 {
@@ -456,60 +457,73 @@ namespace OrganicChemistryApp.Views
 
         private async void Chemical_Searched(object sender, EventArgs e)
         {
-            if (!await CheckNetworkStatus() || completedPaths.Count == 0)
-                return;
-
-            guidePaths.Clear();
-
-            var carbon = eb.CreateElement("C");
-            var atomdict = new Dictionary<SKPoint,AtomNode>();
-            Molecule mole = new Molecule();
-
-
-            foreach (var x in completedPaths)
+            try
             {
-                var line = x.GetLine();
+                if (!await CheckNetworkStatus() || completedPaths.Count == 0)
+                    return;
 
-                var first = line[0];
-                var second = line[1];
+                guidePaths.Clear();
+
+                var carbon = eb.CreateElement("C");
+                var atomdict = new Dictionary<SKPoint, AtomNode>();
+                Molecule mole = new Molecule();
 
 
-                if (!atomdict.ContainsKey(first))
+                foreach (var x in completedPaths)
                 {
-                    var atom = diffElements.ContainsKey(first)
-                        ? new AtomNode(diffElements[first])
-                        : new AtomNode(carbon);
-                    atomdict.Add(first,atom);
-                    mole = new Molecule(atom);
-                }
+                    var line = x.GetLine();
 
-                if (!atomdict.ContainsKey(second))
-                {
-                    var keys = atomdict.Keys;
-                    var point = keys.FirstOrDefault(pt => Math.Abs(SKPoint.Distance(pt, second)) <= 2);
-                    if (point != default)
+                    var first = line[0];
+                    var second = line[1];
+
+
+                    if (!atomdict.ContainsKey(first))
                     {
-                        second = point;
-                    }
-                    else
-                    {
-                        var atom2 = diffElements.ContainsKey(second)
-                            ? new AtomNode(diffElements[second])
+                        var atom = diffElements.ContainsKey(first)
+                            ? new AtomNode(diffElements[first])
                             : new AtomNode(carbon);
-                        atomdict.Add(second, atom2);
+                        atomdict.Add(first, atom);
+                        mole = new Molecule(atom);
                     }
-                    
+
+                    if (!atomdict.ContainsKey(second))
+                    {
+                        var keys = atomdict.Keys;
+                        var point = keys.FirstOrDefault(pt => Math.Abs(SKPoint.Distance(pt, second)) <= 2);
+                        if (point != default)
+                        {
+                            second = point;
+                        }
+                        else
+                        {
+                            var atom2 = diffElements.ContainsKey(second)
+                                ? new AtomNode(diffElements[second])
+                                : new AtomNode(carbon);
+                            atomdict.Add(second, atom2);
+                        }
+
+                    }
+
+                    mole.AddBond(x.Order, atomdict[first], atomdict[second]);
+
                 }
 
-                mole.AddBond(x.Order, atomdict[first], atomdict[second]);
+                var smiles = mole.ToSMILES().Replace("=", "%3D");
+                if (smiles.Contains("XXOVERFLOWXX"))
+                {
+                    throw new StackOverflowException();
+                }
 
+                smiles = smiles.Replace("#", "%23");
+                var mass = mole.GetMolecularMass();
+                var formula = mole.GetMolecularFormula();
+                await Shell.Current.GoToAsync($"resultPage?mass={mass}&search={smiles}&formula={formula}");
             }
-
-            var smiles = mole.ToSMILES().Replace("=", "%3D");
-            smiles = smiles.Replace("#", "%23");
-            var mass = mole.GetMolecularMass();
-            var formula = mole.GetMolecularFormula();
-            await Shell.Current.GoToAsync($"resultPage?mass={mass}&search={smiles}&formula={formula}");
+            catch (Exception)
+            {
+                DisplayErrorMessage(sender, e);
+            }
+            
         }
 
         private async void SearchBar_OnSearchButtonPressed(object sender, EventArgs e)
@@ -577,6 +591,15 @@ namespace OrganicChemistryApp.Views
                     await DisplayAlert("Error", "Device must be connected to the internet", "OK");
                     return false;
             }
+        }
+
+        private async void DisplayErrorMessage(object sender, EventArgs e)
+        {
+            var answer = await DisplayAlert("Error",
+                "Something went wrong while parsing the molecule, please try again", "Continue Drawing",
+                "Clear drawing");
+            if (!answer)
+                ClearCanvas_OnClicked(sender, e);
         }
     }
 

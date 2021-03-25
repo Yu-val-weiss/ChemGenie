@@ -15,7 +15,7 @@ namespace Console_App
         static void Main()
         {
             
-            /*var c1 = new AtomNode("C");
+            var c1 = new AtomNode("C");
             var c2 = new AtomNode("P");
             var c3 = new AtomNode("O");
             var c4 = new AtomNode("N");
@@ -25,9 +25,9 @@ namespace Console_App
             var c8 = new AtomNode("V");
 
             var mole = new Molecule(c1);
-            mole.AddBond(BondOrder.Single, c1, c2);
-            mole.AddBond(BondOrder.Single,c1, c4);
             mole.AddBond(BondOrder.Single, c1, c5);
+            mole.AddBond(BondOrder.Single,c1, c2);
+            mole.AddBond(BondOrder.Single, c1, c4);
             mole.AddBond(BondOrder.Single, c2, c3);
             mole.AddBond(BondOrder.Single, c2, c6);
             mole.AddBond(BondOrder.Single, c3, c4);
@@ -36,17 +36,7 @@ namespace Console_App
             mole.AddBond(BondOrder.Single, c5, c6);
             mole.AddBond(BondOrder.Single, c5, c8);
             mole.AddBond(BondOrder.Single, c6, c7);
-            mole.AddBond(BondOrder.Single, c7, c8);*/
-
-            var c1 = new AtomNode("C");
-            var c2 = new AtomNode("O");
-            var c3 = new AtomNode("P");
-            var c4 = new AtomNode("N");
-            var mole = new Molecule(c1);
-            mole.AddBondToLast(BondOrder.Single,c2);
-            mole.AddBondToLast(BondOrder.Single,c3);
-            mole.AddBondToLast(BondOrder.Single, c4);
-            mole.AddBond(BondOrder.Single, c4, c1);
+            mole.AddBond(BondOrder.Single, c7, c8);
 
             /*var o0 = new AtomNode("O");
             var o1 = new AtomNode("O");
