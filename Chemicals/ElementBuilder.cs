@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
@@ -8,6 +9,9 @@ namespace Chemicals
     {
         private XmlDocument elementsXmlDoc;
         private XmlNode docNode;
+
+        private static readonly Dictionary<String, Element> elements = new Dictionary<string, Element>();
+
         public ElementBuilder(Stream stream = null)
         {
             elementsXmlDoc = new XmlDocument();
@@ -33,6 +37,9 @@ namespace Chemicals
         /// <returns>Element</returns>
         public Element CreateElement(string symbol)
         {
+            if (elements.ContainsKey(symbol))
+                return elements[symbol];
+
             var elementNode = docNode.SelectSingleNode($"/elements/element[symbol = \"{symbol}\"]");
             if (elementNode == null) throw new NullReferenceException("Element node could not be accessed");
             if (elementNode.Attributes == null) throw new NullReferenceException("Element node had no attributes");
@@ -44,7 +51,11 @@ namespace Chemicals
             var colour = nodesList[4].InnerText;
             var valency = Math.Abs(int.Parse(nodesList[12].InnerText));
 
-            return new Element(number, symbol, name, mass, colour, valency);
+            var ele = new Element(number, symbol, name, mass, colour, valency);
+            elements.Add(symbol, ele);
+
+            return ele;
+
         }
     }
 }

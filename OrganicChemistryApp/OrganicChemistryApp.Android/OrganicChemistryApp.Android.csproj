@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -105,7 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OrganicChemistryApp\OrganicChemistryApp.csproj">
-      <Project>{8123C4C1-9CEA-4558-AE44-C534FF038969}</Project>
+      <Project>{BFEF3DA2-4DDD-40CD-9A5B-9EFA9DDAE194}</Project>
       <Name>OrganicChemistryApp</Name>
     </ProjectReference>
   </ItemGroup>

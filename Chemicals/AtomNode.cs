@@ -82,14 +82,12 @@ namespace Chemicals
             ele2.RemoveBond(this);
         }*/
 
-        public void BreakRing(AtomNode ele2, int ringNumber)
+        public void GenRingSuffix(AtomNode ele2, int ringNumber)
         {
             var bondOrder = GetBondOrder(ele2);
 
             ele2.RingSuffixes.Add(ringNumber, bondOrder);
             RingSuffixes.Add(ringNumber, bondOrder);
-            RemoveBond(ele2);
-            ele2.RemoveBond(this);
         }
 
         private BondOrder GetBondOrder(AtomNode bondedElement)
@@ -120,6 +118,25 @@ namespace Chemicals
             return sb.ToString();
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is AtomNode node &&
+                   EqualityComparer<Dictionary<AtomNode, BondOrder>>.Default.Equals(Bonds, node.Bonds) &&
+                   EqualityComparer<Element>.Default.Equals(Element, node.Element);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -577072676;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<AtomNode, BondOrder>>.Default.GetHashCode(Bonds);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Element>.Default.GetHashCode(Element);
+            return hashCode;
+        }
+
+        public override string ToString()
+        {
+            return Element.Symbol;
+        }
     }
 
 }

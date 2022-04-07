@@ -1,50 +1,57 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {}
+    "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp/OrganicChemistryApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj": {
+    "/Users/yuval/Projects/ChemGenie/Chemicals/Chemicals.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj",
+        "projectUniqueName": "/Users/yuval/Projects/ChemGenie/Chemicals/Chemicals.csproj",
         "projectName": "Chemicals",
-        "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj"
+        "projectPath": "/Users/yuval/Projects/ChemGenie/Chemicals/Chemicals.csproj",
+        "packagesPath": "/Users/yuval/.nuget/packages/",
+        "projectStyle": "PackagesConfig",
+        "configFilePaths": [
+          "/Users/yuval/.config/NuGet/NuGet.Config"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        },
+        "packagesConfigPath": "/Users/yuval/Projects/ChemGenie/Chemicals/packages.config"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {
+    "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp/OrganicChemistryApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
+        "projectUniqueName": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp/OrganicChemistryApp.csproj",
         "projectName": "OrganicChemistryApp",
-        "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj",
-        "packagesPath": "C:\\Users\\yuval\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\obj\\",
+        "projectPath": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp/OrganicChemistryApp.csproj",
+        "packagesPath": "/Users/yuval/.nuget/packages/",
+        "outputPath": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\yuval\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/yuval/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj": {
-                "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\Chemicals\\Chemicals.csproj"
+              "/Users/yuval/Projects/ChemGenie/Chemicals/Chemicals.csproj": {
+                "projectPath": "/Users/yuval/Projects/ChemGenie/Chemicals/Chemicals.csproj"
               }
             }
           }
@@ -92,7 +99,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.103/RuntimeIdentifierGraph.json"
         }
       }
     }

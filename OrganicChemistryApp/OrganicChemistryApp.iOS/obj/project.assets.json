@@ -1514,39 +1514,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yuval\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "/Users/yuval/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj",
+      "projectUniqueName": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp.iOS/OrganicChemistryApp.iOS.csproj",
       "projectName": "OrganicChemistryApp.iOS",
-      "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\OrganicChemistryApp.iOS.csproj",
-      "packagesPath": "C:\\Users\\yuval\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.iOS\\obj\\",
+      "projectPath": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp.iOS/OrganicChemistryApp.iOS.csproj",
+      "packagesPath": "/Users/yuval/.nuget/packages/",
+      "outputPath": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp.iOS/obj/",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\yuval\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/Users/yuval/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {
-              "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj"
+            "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp/OrganicChemistryApp.csproj": {
+              "projectPath": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp/OrganicChemistryApp.csproj"
             }
           }
         }

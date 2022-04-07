@@ -18,23 +18,20 @@ namespace Chemicals
         public string ToSMILES()
         {
             RemoveHydrogens();
-            var parents = new Dictionary<AtomNode, AtomNode>();
-            foreach (var atom in Atoms)
+            var bondsToRemove = new HashSet<(AtomNode,AtomNode)>();
+            var cycles = FindCycleBase();
+            for (int i = 0; i < cycles.Count; i++)
             {
-                assign.Add(atom, new List<int>());
-                colour.Add(atom, WHITE);
-                parents.Add(atom, null);
+                var members = cycles[i];
+                var ringStarter = members[0];
+                var ringCloser = members[1];
+                ringStarter.GenRingSuffix(ringCloser, i + 1);
+                bondsToRemove.Add((ringStarter, ringCloser));
+                bondsToRemove.Add((ringCloser, ringStarter));
             }
 
-            DFS(Atoms.First(), parents);
-            AssignCycles();
-            foreach (var x in cycles)
-            {
-                var members = x.Value;
-                var ringCloser = members.Last();
-                var ringStarter = members.First(at => at.Bonds.ContainsKey(ringCloser));
-                ringStarter.BreakRing(x.Value.Last(), x.Key);
-            }
+            foreach (var bond in bondsToRemove)
+                bond.Item1.RemoveBond(bond.Item2);
 
             return ToSmilesRec(Atoms.First(), null);
         }
@@ -102,72 +99,68 @@ namespace Chemicals
 
 
         #region CycleFinding
-        //Source for parts of the algorithm https://www.geeksforgeeks.org/print-all-the-cycles-in-an-undirected-graph/
-        /// <summary>
-        /// WHITE -> unvisited, GREY -> began visiting, BLACK -> visit complete (all children visited too)
-        /// </summary>
-        private int WHITE = 0, GREY = 1, BLACK = 2;
-        Dictionary<AtomNode, int> colour = new Dictionary<AtomNode, int>();
-        public Dictionary<AtomNode, List<int>> assign = new Dictionary<AtomNode, List<int>>();
-        public Dictionary<int, List<AtomNode>> cycles = new Dictionary<int, List<AtomNode>>();
-        private int ringNum;
-
-        void DFS(AtomNode at, Dictionary<AtomNode, AtomNode> parents, AtomNode par = null)//The parents is structured as <Child, Parent>
+        //Using Paton's cycle finding algorithm
+        public List<List<AtomNode>> FindCycleBase()
         {
-            if (colour[at] == BLACK)
-                return;
+            var used = new Dictionary<AtomNode, HashSet<AtomNode>>();
+            var parent = new Dictionary<AtomNode, AtomNode>();
+            var stack = new Stack<AtomNode>();
+            var cycles = new List<List<AtomNode>>();
 
-            if (colour[at] == GREY)
+            foreach(var root in Atoms)
             {
-                // backtracking to find the whole cycle
-                ringNum++;
-                var bck = par;
-                assign[bck].Add(ringNum);
-
-                while (bck != at)
-                {
-                    bck = parents[bck];
-                    assign[bck].Add(ringNum);
-                }
-
-                return;
-            }
-
-            parents[at] = par;
-
-            colour[at] = GREY;
-
-            foreach (var bondAt in at.Bonds.Keys)
-            {
-                if (bondAt == parents[at])
+                if (parent.ContainsKey(root))
                     continue;
-                DFS(bondAt, parents, at);
-            }
 
-            colour[at] = BLACK;
-        }
-        /// <summary>
-        /// This functions takes the simple assignments in <seealso cref="assign"/>, tidies them up and places them in <seealso cref="cycles"/>
-        /// </summary>
-        void AssignCycles()
-        {
-            foreach (var x in assign)
-            {
-                foreach (var rn in x.Value)
+                used.Clear();
+
+                parent.Add(root, root);
+                used.Add(root, new HashSet<AtomNode>());
+                stack.Push(root);
+
+                while (stack.Count > 0)
                 {
-                    if (cycles.ContainsKey(rn))
+
+                    AtomNode current = stack.Pop();
+                    HashSet<AtomNode> currentUsed = used[current];
+                    foreach (KeyValuePair<AtomNode, BondOrder> bond in current.Bonds)
                     {
-                        cycles[rn].Add(x.Key);
-                    }
-                    else
-                    {
-                        cycles[rn] = new List<AtomNode> { x.Key };
+                        AtomNode neighbour = bond.Key;
+
+                        if (!used.ContainsKey(neighbour))
+                        {
+                            //found a new node
+                            parent.Add(neighbour, current);
+                            var neighbourUsed = new HashSet<AtomNode>();
+                            neighbourUsed.Add(current);
+                            used.Add(neighbour, neighbourUsed);
+                            stack.Push(neighbour);
+                        }
+                        else if (!currentUsed.Contains(neighbour))
+                        {
+                            //found a cycle
+                            HashSet<AtomNode> neighbourUsed = used[neighbour];
+                            var cycle = new List<AtomNode>();
+                            cycle.Add(neighbour);
+                            cycle.Add(current);
+                            AtomNode p = parent[current];
+                            while (!neighbourUsed.Contains(p))
+                            {
+                                cycle.Add(p);
+                                p = parent[p];
+                            }
+                            cycle.Add(p);
+                            cycles.Add(cycle);
+                            neighbourUsed.Add(current);
+                        }
                     }
                 }
             }
+            return cycles;
         }
-
         #endregion
+
+
 
         internal static string BondStringFromOrder(BondOrder order)
         {

@@ -2431,39 +2431,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yuval\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "/Users/yuval/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.Android\\OrganicChemistryApp.Android.csproj",
+      "projectUniqueName": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp.Android/OrganicChemistryApp.Android.csproj",
       "projectName": "OrganicChemistryApp.Android",
-      "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.Android\\OrganicChemistryApp.Android.csproj",
-      "packagesPath": "C:\\Users\\yuval\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp.Android\\obj\\",
+      "projectPath": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp.Android/OrganicChemistryApp.Android.csproj",
+      "packagesPath": "/Users/yuval/.nuget/packages/",
+      "outputPath": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp.Android/obj/",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\yuval\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/Users/yuval/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "monoandroid10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "monoandroid10.0": {
           "projectReferences": {
-            "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj": {
-              "projectPath": "C:\\Users\\yuval\\Documents\\GitHub\\OrganicChemistryApp-NEA\\OrganicChemistryApp\\OrganicChemistryApp\\OrganicChemistryApp.csproj"
+            "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp/OrganicChemistryApp.csproj": {
+              "projectPath": "/Users/yuval/Projects/ChemGenie/OrganicChemistryApp/OrganicChemistryApp/OrganicChemistryApp.csproj"
             }
           }
         }

@@ -14,19 +14,19 @@ namespace Console_App
     {
         static void Main()
         {
-            
+
             var c1 = new AtomNode("C");
-            var c2 = new AtomNode("P");
-            var c3 = new AtomNode("O");
-            var c4 = new AtomNode("N");
-            var c5 = new AtomNode("F");
-            var c6 = new AtomNode("I");
-            var c7 = new AtomNode("K");
-            var c8 = new AtomNode("V");
+            var c2 = new AtomNode("C");
+            var c3 = new AtomNode("C");
+            var c4 = new AtomNode("C");
+            var c5 = new AtomNode("C");
+            var c6 = new AtomNode("C");
+            var c7 = new AtomNode("C");
+            var c8 = new AtomNode("C");
 
             var mole = new Molecule(c1);
             mole.AddBond(BondOrder.Single, c1, c5);
-            mole.AddBond(BondOrder.Single,c1, c2);
+            mole.AddBond(BondOrder.Single, c1, c2);
             mole.AddBond(BondOrder.Single, c1, c4);
             mole.AddBond(BondOrder.Single, c2, c3);
             mole.AddBond(BondOrder.Single, c2, c6);
@@ -38,32 +38,32 @@ namespace Console_App
             mole.AddBond(BondOrder.Single, c6, c7);
             mole.AddBond(BondOrder.Single, c7, c8);
 
-            /*var o0 = new AtomNode("O");
-            var o1 = new AtomNode("O");
-            var cb0 = new AtomNode("C");
-            var cb1 = new AtomNode("C");
 
-            mole.AddBond(BondOrder.Single, c1, o0);
-            mole.AddBondToLast(BondOrder.Single,cb0);
-            mole.AddBondToLast(BondOrder.Single, cb1);
-            mole.AddBondToLast(BondOrder.Single, o1);
-            mole.AddBond(BondOrder.Single, o1, c2);
+            //var b = new AtomNode("B");
+            //var c = new AtomNode("C");
+            //var n = new AtomNode("N");
+            //var o = new AtomNode("O");
+            //var f = new AtomNode("F");
 
-            /*mole.AddBond(BondOrder.Single, c1, o0);
-            mole.AddBondToLast(BondOrder.Single, cb0);
-            mole.AddBondToLast(BondOrder.Single, cb1);
-            mole.AddBondToLast(BondOrder.Single, o1);
-            mole.AddBondToLast(BondOrder.Single, o0);*/
+            //var mole = new Molecule(b);
+            //mole.AddBond(BondOrder.Single, b, o);
+            //mole.AddBond(BondOrder.Single, b, c);
+            //mole.AddBond(BondOrder.Single, c, n);
+            //mole.AddBond(BondOrder.Single, n, o);
+            //mole.AddBond(BondOrder.Single, b, f);
+            //mole.AddBond(BondOrder.Single, f, o);
+            //mole.AddBond(BondOrder.Single, b, n);
+            
+
+            var cycles = mole.FindCycleBase();
+
+            foreach (var cycle in cycles)
+                Console.WriteLine(String.Join(";", cycle));
+
+           
 
             var smiles = mole.ToSMILES();
-            /*var cy = mole.CyclePrint();
-
-            foreach (var y in cy)
-            {
-                Console.Write("\n" + Convert.ToString(y.Key) + ": ");
-                foreach (var z in y.Value)
-                    Console.Write(z.Element.Symbol + "  ");
-            }*/
+           
 
             Console.WriteLine(smiles);
 
